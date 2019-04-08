@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="main_tab">
+        <item>校园</item>
+        <item>发现</item>
+        <item>学习</item>
+        <item>我的</item>
+    </string-array>
+
+    <string-array name="study_tab">
+        <item>常用网站</item>
+        <item>开发社区</item>
+        <item>在线学习</item>
+        <item>开发平台</item>
+        <item>个人博客</item>
+        <item>常用工具</item>
+        <item>公司博客</item>
+        <item>查看源码</item>
+        <item>互联网资讯</item>    <!--应用加固-->
+        <item>求职招聘</item>
+        <item>后端云</item>   <!--Bug管理 IM即时通讯 直播SDK 地图平台 推送平台-->
+        <item>创意素材</item>
+        <item>互联网统计</item>
+        <item>快速开发</item> <!--应用发布 反馈平台 在线文档 短视频SDK Flutter WebView内核-->
+    </string-array>
+    <integer-array name="study_int">
+        <item>272</item>
+        <item>280</item>
+        <item>276</item>
+        <item>277</item>
+        <item>274</item>
+        <item>275</item>
+        <item>281</item>
+        <item>393</item>
+        <item>278</item>
+        <item>279</item>
+        <item>290</item>
+        <item>299</item>
+        <item>300</item>
+        <item>301</item>
+    </integer-array>
+</resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--自定义颜色-->
+    <color name="tabBottomColor">#dcdcdc</color>
+    <color name="tabSelectorTextColorChecked">#fa911e</color>
+    <color name="tabSelectorTextColor">#999999</color>
+
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="line_bg">#e5e5e5</color>
+    <color name="ic_discover_arrow">#9b9b9b</color>
+    <color name="pop_window">#f8f8f8</color>
+    <color name="pop_layout">#fefefe</color>
+    <color name="cccccc">#cccccc</color>
+    <color name="f2f4f7">#f2f4f7</color>
+    <color name="orange">#fa911e</color>
+
+    <color name="_f2f4f7">#f2f4f7</color>
+    <color name="_ffffff">#ffffff</color>
+    <color name="_212121">#212121</color>
+    <color name="_333333">#333333</color>
+    <color name="_939da4">#939da4</color>
+    <color name="_f8f8f8">#f8f8f8</color>
+
+    <color name="loading_web_bg_color">#518b23</color>
+    <color name="progress_start_color">#9cff4d</color>
+    <color name="progress_center_color">#a2e66d</color>
+    <color name="progress_end_color">#a2e66d</color>
+</resources>
