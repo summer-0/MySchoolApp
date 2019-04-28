@@ -6,7 +6,7 @@ import com.example.a49944.myapp.ui.fragment.FragmentManagerWrapper;
 import com.example.a49944.myapp.ui.fragment.LoginFragment;
 import com.example.a49944.myapp.ui.fragment.MainFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,4 +20,5 @@ public class MainActivity extends AppCompatActivity {
     public void changeToHomeFragment(){
         getSupportFragmentManager().beginTransaction().replace(R.id.main_content, FragmentManagerWrapper.getInstance().createFragment(MainFragment.class)).commitAllowingStateLoss();
     }
+
 }

@@ -2,7 +2,6 @@ package com.example.a49944.myapp.ui.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -15,18 +14,14 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.example.a49944.myapp.R;
-import com.example.a49944.myapp.WebViewActivity;
+import com.example.a49944.myapp.ui.activity.WebViewActivity;
 import com.example.a49944.myapp.adapter.StudyRecyclerAdapter;
-import com.example.a49944.myapp.bean.json.NaviArticle;
 import com.example.a49944.myapp.bean.json.NaviBean;
-import com.example.a49944.myapp.cache.CacheM;
-import com.example.a49944.myapp.cache.CacheManager;
 import com.example.a49944.myapp.net.ApiHttpClient;
 import com.example.a49944.myapp.net.HttpDataApi;
 import com.example.a49944.myapp.utils.LogUtils;
@@ -36,7 +31,6 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import cz.msebera.android.httpclient.Header;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class StudyContentFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
@@ -119,7 +113,7 @@ public class StudyContentFragment extends Fragment implements SwipeRefreshLayout
 
         List<String> list;
         list = StudyNaviUtils.getTitles(mCid, null);
-        StudyRecyclerAdapter adapter = new StudyRecyclerAdapter(list);
+        StudyRecyclerAdapter adapter = new StudyRecyclerAdapter(null);
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         //给item设置点击事件

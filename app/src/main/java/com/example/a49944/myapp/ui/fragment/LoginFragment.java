@@ -7,13 +7,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.TextView;
 import com.example.a49944.myapp.MainActivity;
 import com.example.a49944.myapp.R;
 
 public class LoginFragment extends Fragment {
 
-    private Button mLoginButton;
+    private TextView mLoginButton;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

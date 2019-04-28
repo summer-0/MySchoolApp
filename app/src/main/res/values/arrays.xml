@@ -15,12 +15,9 @@
         <item>个人博客</item>
         <item>常用工具</item>
         <item>公司博客</item>
-        <item>查看源码</item>
         <item>互联网资讯</item>    <!--应用加固-->
-        <item>求职招聘</item>
         <item>后端云</item>   <!--Bug管理 IM即时通讯 直播SDK 地图平台 推送平台-->
         <item>创意素材</item>
-        <item>互联网统计</item>
         <item>快速开发</item> <!--应用发布 反馈平台 在线文档 短视频SDK Flutter WebView内核-->
     </string-array>
     <integer-array name="study_int">
@@ -31,12 +28,63 @@
         <item>274</item>
         <item>275</item>
         <item>281</item>
-        <item>393</item>
         <item>278</item>
-        <item>279</item>
         <item>290</item>
         <item>299</item>
-        <item>300</item>
         <item>301</item>
     </integer-array>
+
+    <string-array name="discover_tab">
+        <item>头条</item>
+        <item>科技</item>
+        <item>军事</item>
+        <item>体育</item>
+        <item>娱乐</item>
+        <item>国内</item>
+        <item>社会</item>
+        <item>财经</item>
+        <item>时尚</item>
+    </string-array>
+    <string-array name="discover_tab_tag">
+        <item>top</item>
+        <item>keji</item>
+        <item>junshi</item>
+        <item>tiyu</item>
+        <item>yule</item>
+        <item>guonei</item>
+        <item>shehui</item>
+        <item>caijing</item>
+        <item>shishang</item>
+    </string-array>
+    <integer-array name="dis_tab_num">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </integer-array>
+
+    <string-array name="adBlockUrl">
+        <item>ubmcmm.baidustatic.com</item>
+        <item>cpro2.baidustatic.com</item>
+        <item>cpro.baidustatic.com</item>
+        <item>s.lianmeng.360.cn</item>
+        <item>nsclick.baidu.com</item>
+        <item>pos.baidu.com</item>
+        <item>cbjs.baidu.com</item>
+        <item>cpro.baidu.com</item>
+        <item>images.sohu.com/cs/jsfile/js/c.js</item>
+        <item>union.sogou.com/</item>
+        <item>sogou.com/</item>
+        <item>a.baidu.com</item>
+        <item>c.baidu.com</item>
+        <item>cm.pos.baidu.com</item>
+        <item>www.w3.org/1999/xhtml/</item>
+        <item>sh996.dftoutiao.com/</item>
+        <item>gx668.dftoutiao.com/</item>
+    </string-array>
 </resources>

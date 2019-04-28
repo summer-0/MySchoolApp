@@ -8,18 +8,37 @@
     <string name="tab_bottom_me">我的</string>
 
     <!--我的-->
+    <string name="login_title">登录</string>
+    <string name="btn_login">登录</string>
+    <string name="input_stu_number">请输入学号</string>
+    <string name="input_stu_password">请输入密码</string>
+    <string name="input_yzm">请输入验证码</string>
+    <string name="save_stupassword">保存密码</string>
     <string name="btn_click_login">立即登录</string>
     <string name="mine_follow">关注</string>
     <string name="mine_fans">粉丝</string>
     <string name="mine_recharge">充值</string>
-    <string name="mine_starlight">我的星光</string>
-    <string name="mine_contribution">星光贡献榜</string>
+    <string name="mine_starlight">我的收藏</string>
+    <string name="mine_contribution">消息中心</string>
     <string name="mine_watch">观看历史</string>
     <string name="mine_level">我的等级</string>
     <string name="mine_task">任务中心</string>
-    <string name="mine_game">游戏中心</string>
+    <string name="mine_game">意见反馈</string>
     <string name="mine_setting">设置</string>
+    <string name="mine_signup">退出账号</string>
 
     <!--发现-->
     <string name="tab_select">选择栏目</string>
+
+    <!--校园-->
+    <string name="input_kd_number">请输入快递号</string>
+    <string name="campus_kd">快递查询</string>
+    <string name="campus_zto">中通快递</string>
+    <string name="campus_yto">圆通速递</string>
+    <string name="campus_yt">韵达速递</string>
+    <string name="campus_yzpy">邮政快递</string>
+    <string name="campus_ems">EMS</string>
+    <string name="campus_jd">京东快递</string>
+    <string name="campus_uc">优速快递</string>
+
 </resources>

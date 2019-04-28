@@ -18,6 +18,8 @@
     <color name="cccccc">#cccccc</color>
     <color name="f2f4f7">#f2f4f7</color>
     <color name="orange">#fa911e</color>
+    <color name="custom_gray">#ddd</color>
+    <color name="color_fed952">#FF5294FE</color>
 
     <color name="_f2f4f7">#f2f4f7</color>
     <color name="_ffffff">#ffffff</color>
@@ -30,4 +32,10 @@
     <color name="progress_start_color">#9cff4d</color>
     <color name="progress_center_color">#a2e66d</color>
     <color name="progress_end_color">#a2e66d</color>
+
+    <color name="main_tab_checked">#106be4</color>
+    <color name="main_tab_noChecked">#a2a297</color>
+
+    <color name="gray">#808080</color>
+    <color name="color_deep_default">#4a4a4a</color>
 </resources>

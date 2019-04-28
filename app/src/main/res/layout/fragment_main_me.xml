@@ -5,147 +5,173 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
         android:background="@color/_f8f8f8"
-        tools:context=".MainActivity">
-        <android.support.v4.widget.SwipeRefreshLayout
-                android:id="@+id/swipeRefresh_layout"
+        tools:context=".MainActivity"
+        android:orientation="vertical">
+    <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_me"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="?attr/colorPrimary">
+        <TextView
+                android:id="@+id/tv_title_dis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/_ffffff"
+                android:textSize="20sp"
+                android:text="@string/tab_bottom_me"/>
+    </android.support.v7.widget.Toolbar>
+    <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <ScrollView
+                android:layout_height="match_parent"
+                android:scrollbars="none">
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/ic_mine_background1">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/iv_user"
+                            android:layout_width="130dp"
+                            android:layout_height="130dp"
+                            android:src="@mipmap/chatuser_head_icon"
+                            android:scaleType="centerCrop"
+                            android:layout_centerHorizontal="true"
+                            android:paddingTop="15dp"
+                            app:civ_border_width="2dp"
+                            app:civ_border_color="@color/white"/>
+                    <Button
+                            android:id="@+id/btn_login"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/btn_click_login"
+                            android:layout_below="@+id/iv_user"
+                            android:layout_centerHorizontal="true"
+                            android:background="@null"
+                            android:textColor="@color/tabSelectorTextColor"
+                    />
+                </RelativeLayout>
+                <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scrollbars="none">
-                        <LinearLayout
-                                android:orientation="vertical"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-                                <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:background="@mipmap/ic_mine_background1">
-                                        <de.hdodenhof.circleimageview.CircleImageView
-                                                android:id="@+id/iv_user"
-                                                android:layout_width="130dp"
-                                                android:layout_height="130dp"
-                                                android:src="@mipmap/chatuser_head_icon"
-                                                android:scaleType="centerCrop"
-                                                android:layout_centerHorizontal="true"
-                                                android:paddingTop="15dp"
-                                                app:civ_border_width="2dp"
-                                                app:civ_border_color="@color/white"/>
-                                        <Button
-                                                android:id="@+id/btn_login"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="@string/btn_click_login"
-                                                android:layout_below="@+id/iv_user"
-                                                android:layout_centerHorizontal="true"
-                                                android:background="@null"
-                                                android:textColor="@color/tabSelectorTextColor"
-                                        />
-                                </RelativeLayout>
-                                <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:orientation="vertical"
-                                        android:background="@color/white">
-                                        <include layout="@layout/line_h_mine"/>
-                                        <TextView
-                                                android:id="@+id/tv_starLight"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:drawablePadding="5dp"
-                                                android:gravity="center_vertical"
-                                                android:padding="13dp"
-                                                android:background="?android:attr/selectableItemBackground"
-                                                android:drawableRight="@mipmap/ic_triangle"
-                                                android:text="@string/mine_starlight"
-                                                android:textColor="@color/tabSelectorTextColor"
-                                                android:drawableLeft="@mipmap/mine_starlight"
-                                                tools:ignore="RtlHardcoded"/>
-                                        <include layout="@layout/line_h_mine_space"/>
-                                        <TextView
-                                                android:id="@+id/tv_contribution"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:drawablePadding="5dp"
-                                                android:gravity="center_vertical"
-                                                android:padding="13dp"
-                                                android:background="?android:attr/selectableItemBackground"
-                                                android:drawableRight="@mipmap/ic_triangle"
-                                                android:textColor="@color/tabSelectorTextColor"
-                                                android:text="@string/mine_contribution"
-                                                android:drawableLeft="@mipmap/mine_contribution"
-                                                tools:ignore="RtlHardcoded"/>
-                                        <include layout="@layout/line_h_mine"/>
-                                        <TextView
-                                                android:id="@+id/tv_history"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:drawablePadding="5dp"
-                                                android:gravity="center_vertical"
-                                                android:padding="13dp"
-                                                android:background="?android:attr/selectableItemBackground"
-                                                android:textColor="@color/tabSelectorTextColor"
-                                                android:drawableRight="@mipmap/ic_triangle"
-                                                android:text="@string/mine_watch"
-                                                android:drawableLeft="@mipmap/mine_watch" tools:ignore="RtlHardcoded"/>
-                                        <include layout="@layout/line_h_mine_space"/>
-                                        <TextView
-                                                android:id="@+id/tv_level"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:drawablePadding="5dp"
-                                                android:gravity="center_vertical"
-                                                android:padding="13dp"
-                                                android:background="?android:attr/selectableItemBackground"
-                                                android:textColor="@color/tabSelectorTextColor"
-                                                android:drawableRight="@mipmap/ic_triangle"
-                                                android:text="@string/mine_level"
-                                                android:drawableLeft="@mipmap/mine_level" tools:ignore="RtlHardcoded"/>
-                                        <include layout="@layout/line_h_mine_space"/>
-                                        <TextView
-                                                android:id="@+id/tv_task"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:drawablePadding="5dp"
-                                                android:gravity="center_vertical"
-                                                android:padding="13dp"
-                                                android:background="?android:attr/selectableItemBackground"
-                                                android:textColor="@color/tabSelectorTextColor"
-                                                android:drawableRight="@mipmap/ic_triangle"
-                                                android:text="@string/mine_task"
-                                                android:drawableLeft="@mipmap/mine_task" tools:ignore="RtlHardcoded"/>
-                                        <include layout="@layout/line_h_mine"/>
-                                        <TextView
-                                                android:id="@+id/tv_game"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:drawablePadding="5dp"
-                                                android:gravity="center_vertical"
-                                                android:padding="13dp"
-                                                android:background="?android:attr/selectableItemBackground"
-                                                android:textColor="@color/tabSelectorTextColor"
-                                                android:drawableRight="@mipmap/ic_triangle"
-                                                android:text="@string/mine_game"
-                                                android:drawableLeft="@mipmap/mine_game" tools:ignore="RtlHardcoded"/>
-                                        <include layout="@layout/line_h_mine_space"/>
-                                        <TextView
-                                                android:id="@+id/tv_setting"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:drawablePadding="5dp"
-                                                android:gravity="center_vertical"
-                                                android:padding="13dp"
-                                                android:background="?android:attr/selectableItemBackground"
-                                                android:drawableRight="@mipmap/ic_triangle"
-                                                android:textColor="@color/tabSelectorTextColor"
-                                                android:text="@string/mine_setting"
-                                                android:drawableLeft="@mipmap/mine_setting"
-                                                tools:ignore="RtlHardcoded"/>
-                                        <include layout="@layout/line_h_mine"/>
-
-                                </LinearLayout>
-                        </LinearLayout>
-                </ScrollView>
-        </android.support.v4.widget.SwipeRefreshLayout>
+                        android:orientation="vertical"
+                        android:background="@color/white">
+                    <include layout="@layout/line_h_mine"/>
+                    <TextView
+                            android:id="@+id/tv_starLight"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="5dp"
+                            android:gravity="center_vertical"
+                            android:padding="13dp"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:drawableRight="@mipmap/ic_triangle"
+                            android:text="@string/mine_starlight"
+                            android:textColor="@color/tabSelectorTextColor"
+                            android:drawableLeft="@mipmap/mine_starlight"
+                            tools:ignore="RtlHardcoded"/>
+                    <include layout="@layout/line_h_mine_space"/>
+                    <TextView
+                            android:id="@+id/tv_contribution"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="5dp"
+                            android:gravity="center_vertical"
+                            android:padding="13dp"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:drawableRight="@mipmap/ic_triangle"
+                            android:textColor="@color/tabSelectorTextColor"
+                            android:text="@string/mine_contribution"
+                            android:drawableLeft="@mipmap/mine_contribution"
+                            tools:ignore="RtlHardcoded"/>
+                    <include layout="@layout/line_h_mine"/>
+                    <TextView
+                            android:id="@+id/tv_history"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="5dp"
+                            android:gravity="center_vertical"
+                            android:padding="13dp"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:textColor="@color/tabSelectorTextColor"
+                            android:drawableRight="@mipmap/ic_triangle"
+                            android:text="@string/mine_watch"
+                            android:drawableLeft="@mipmap/mine_watch" tools:ignore="RtlHardcoded"/>
+                    <include layout="@layout/line_h_mine_space"/>
+                    <TextView
+                            android:id="@+id/tv_level"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="5dp"
+                            android:gravity="center_vertical"
+                            android:padding="13dp"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:textColor="@color/tabSelectorTextColor"
+                            android:drawableRight="@mipmap/ic_triangle"
+                            android:text="@string/mine_level"
+                            android:drawableLeft="@mipmap/mine_level" tools:ignore="RtlHardcoded"/>
+                    <include layout="@layout/line_h_mine_space"/>
+                    <TextView
+                            android:id="@+id/tv_task"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="5dp"
+                            android:gravity="center_vertical"
+                            android:padding="13dp"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:textColor="@color/tabSelectorTextColor"
+                            android:drawableRight="@mipmap/ic_triangle"
+                            android:text="@string/mine_task"
+                            android:drawableLeft="@mipmap/mine_task" tools:ignore="RtlHardcoded"/>
+                    <include layout="@layout/line_h_mine"/>
+                    <TextView
+                            android:id="@+id/tv_game"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="5dp"
+                            android:gravity="center_vertical"
+                            android:padding="13dp"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:textColor="@color/tabSelectorTextColor"
+                            android:drawableRight="@mipmap/ic_triangle"
+                            android:text="@string/mine_game"
+                            android:drawableLeft="@mipmap/mine_game" tools:ignore="RtlHardcoded"/>
+                    <include layout="@layout/line_h_mine_space"/>
+                    <TextView
+                            android:id="@+id/tv_setting"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="5dp"
+                            android:gravity="center_vertical"
+                            android:padding="13dp"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:drawableRight="@mipmap/ic_triangle"
+                            android:textColor="@color/tabSelectorTextColor"
+                            android:text="@string/mine_setting"
+                            android:drawableLeft="@mipmap/mine_setting"
+                            tools:ignore="RtlHardcoded"/>
+                    <include layout="@layout/line_h_mine"/>
+                    <TextView
+                            android:id="@+id/tv_signup"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="5dp"
+                            android:gravity="center_vertical"
+                            android:padding="13dp"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:textColor="@color/tabSelectorTextColor"
+                            android:drawableRight="@mipmap/ic_triangle"
+                            android:text="@string/mine_signup"
+                            android:drawableLeft="@mipmap/mine_game" tools:ignore="RtlHardcoded"/>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

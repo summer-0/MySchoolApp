@@ -9,15 +9,22 @@
         tools:context=".MainActivity"
         android:background="@color/white">
     <!--indeterminate: false 表示不确定进度条的真实值-->
-    <ProgressBar
-            android:id="@+id/pb_progress"
+    <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_web"
             android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:indeterminate="false"
-            android:max="100"
-            style="?android:attr/horizontalScrollViewStyle"
-            android:indeterminateDrawable="@drawable/progress_bar_drawable"
-    />
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            app:navigationIcon="@mipmap/ic_back">
+        <TextView
+                android:id="@+id/tv_title_dis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/_ffffff"
+                android:textSize="22sp"
+                android:text="头条"/>
+    </android.support.v7.widget.Toolbar>
     <WebView
             android:id="@+id/webview"
             android:layout_width="match_parent"

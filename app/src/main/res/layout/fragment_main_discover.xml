@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical">
+    <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_discover"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="?attr/colorPrimary">
+        <TextView
+                android:id="@+id/tv_title_dis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/_ffffff"
+                android:textSize="20sp"
+                android:text="@string/tab_bottom_discover"/>
+    </android.support.v7.widget.Toolbar>
+    <android.support.design.widget.TabLayout
+            android:id="@+id/tablayout_dis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabTextColor="@color/black"
+            app:tabSelectedTextColor="?attr/colorPrimary"
+            app:tabIndicatorColor="?attr/colorPrimary"
+            app:tabMode="scrollable">
+    </android.support.design.widget.TabLayout>
+    <View
+            android:id="@+id/view_line"
+            android:layout_width="match_parent" android:layout_height="0.5dp"
+            android:background="@color/tabBottomColor"/>
+    <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager_dis"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
+
+</LinearLayout>

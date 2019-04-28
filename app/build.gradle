@@ -34,4 +34,15 @@ dependencies {
     //json解析
     implementation 'com.alibaba:fastjson:1.2.55'
     implementation 'com.alibaba:fastjson:1.2.55.android'
+    
+    //Retrofit RxAndroid RxJava
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation  'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+    
+    //Glide 图片加载
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 }

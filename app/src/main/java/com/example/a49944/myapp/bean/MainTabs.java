@@ -1,15 +1,12 @@
 package com.example.a49944.myapp.bean;
 
 import com.example.a49944.myapp.R;
-import com.example.a49944.myapp.ui.fragment.DefaultFragment;
-import com.example.a49944.myapp.ui.fragment.DefaultFragmentTest;
-import com.example.a49944.myapp.ui.fragment.MeFragment;
-import com.example.a49944.myapp.ui.fragment.StudyFragment;
+import com.example.a49944.myapp.ui.fragment.*;
 
 public enum MainTabs {
-    CAMPUS(0, R.string.tab_bottom_campus, R.drawable.selector_tab_img_campus, DefaultFragment.class),
-    DISCOVER(1, R.string.tab_bottom_discover, R.drawable.selector_tab_img_discover, DefaultFragmentTest.class),
-    STUDY(2, R.string.tab_bottom_study, R.drawable.selector_tab_img_study, StudyFragment.class),
+    CAMPUS(0, R.string.tab_bottom_campus, R.drawable.selector_tab_img_campus, CampusFragment.class),
+    DISCOVER(1, R.string.tab_bottom_discover, R.drawable.selector_tab_img_discover, DiscoverFragment.class),
+    STUDY(2, R.string.tab_bottom_study, R.drawable.selector_tab_img_study, StudyFragmentTest.class),
     ME(3, R.string.tab_bottom_me, R.drawable.selector_tab_img_me, MeFragment.class);
 
     private int idx;

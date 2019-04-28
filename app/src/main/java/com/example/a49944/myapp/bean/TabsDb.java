@@ -8,11 +8,11 @@ public class TabsDb {
         return tabs;
     }
     public static int[] getTabsImg(){
-        int[] ids={R.mipmap.ic_tabbar_campus,R.mipmap.ic_tabbar_discover,R.mipmap.ic_tabbar_studyhl,R.mipmap.ic_tabbar_me};
+        int[] ids={R.mipmap.ic_tabbar_mainframe2,R.mipmap.ic_tabbar_discover2,R.mipmap.ic_tabbar_studyhl2,R.mipmap.ic_tabbar_me2};
         return ids;
     }
     public static int[] getTabsImgLight(){
-        int[] ids={R.mipmap.ic_tabbar_campushl,R.mipmap.ic_tabbar_discoverhl,R.mipmap.ic_tabbar_study,R.mipmap.ic_tabbar_mehl};
+        int[] ids={R.mipmap.ic_tabbar_mainframehl2,R.mipmap.ic_tabbar_discoverhl2,R.mipmap.ic_tabbar_study2,R.mipmap.ic_tabbar_mehl2};
         return ids;
     }
 }

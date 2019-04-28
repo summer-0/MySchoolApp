@@ -49,10 +49,10 @@ public class MainFragment extends Fragment {
             ImageView imageView = view.findViewById(R.id.iv_Img);
             TextView textView = view.findViewById(R.id.tv_title);
             if (i == mTabHost.getCurrentTab()){
-                textView.setTextColor(getResources().getColor(R.color.tabSelectorTextColorChecked));
+                textView.setTextColor(getResources().getColor(R.color.main_tab_checked));
                 imageView.setImageResource(TabsDb.getTabsImgLight()[i]);
             }else {
-                textView.setTextColor(getResources().getColor(R.color.tabSelectorTextColor));
+                textView.setTextColor(getResources().getColor(R.color.main_tab_noChecked));
                 imageView.setImageResource(TabsDb.getTabsImg()[i]);
             }
         }
@@ -67,7 +67,7 @@ public class MainFragment extends Fragment {
             ImageView imageView = v.findViewById(R.id.iv_Img);
             textView.setText(getString(tabs[i].getResName()));
             if (i==0){
-                textView.setTextColor(getResources().getColor(R.color.tabSelectorTextColorChecked));
+                textView.setTextColor(getResources().getColor(R.color.main_tab_checked));
                 imageView.setImageResource(TabsDb.getTabsImgLight()[i]);
             }else {
                 imageView.setImageResource(TabsDb.getTabsImg()[i]);
