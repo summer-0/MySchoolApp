@@ -9,14 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import com.example.a49944.myapp.KNTraceActivity;
+import com.example.a49944.myapp.ui.activity.InformActivity;
+import com.example.a49944.myapp.ui.activity.KNTraceActivity;
 import com.example.a49944.myapp.R;
-import com.example.a49944.myapp.net.kdniao.KdniaoTrackQueryAPI;
+import com.example.a49944.myapp.ui.activity.SchoolCallActivity;
 import com.example.a49944.myapp.utils.LogUtils;
 
 public class CampusFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = CampusFragment.class.getName();
-    private ImageView mKNTrace,mCall;
+    private ImageView mKNTrace,mCall, mInform;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,11 +42,13 @@ public class CampusFragment extends Fragment implements View.OnClickListener {
         // mBtnTest = view.findViewById(R.id.btn_test);
         mKNTrace = view.findViewById(R.id.iv_kntrace);
         mCall = view.findViewById(R.id.iv_call);
+        mInform = view.findViewById(R.id.iv_inform);
     }
 
     private void initData() {
         mKNTrace.setOnClickListener(this);
         mCall.setOnClickListener(this);
+        mInform.setOnClickListener(this);
     }
 
     @Override
@@ -56,7 +59,12 @@ public class CampusFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.iv_call:
-                LogUtils.i(TAG, "call");
+                Intent intentCall = new Intent(getContext(), SchoolCallActivity.class);
+                startActivity(intentCall);
+                break;
+            case R.id.iv_inform:
+                Intent intentInform = new Intent(getContext(), InformActivity.class);
+                startActivity(intentInform);
                 break;
             default:
                 break;

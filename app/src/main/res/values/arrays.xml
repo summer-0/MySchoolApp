@@ -68,23 +68,61 @@
         <item>8</item>
     </integer-array>
 
-    <string-array name="adBlockUrl">
-        <item>ubmcmm.baidustatic.com</item>
-        <item>cpro2.baidustatic.com</item>
-        <item>cpro.baidustatic.com</item>
-        <item>s.lianmeng.360.cn</item>
-        <item>nsclick.baidu.com</item>
-        <item>pos.baidu.com</item>
-        <item>cbjs.baidu.com</item>
-        <item>cpro.baidu.com</item>
-        <item>images.sohu.com/cs/jsfile/js/c.js</item>
-        <item>union.sogou.com/</item>
-        <item>sogou.com/</item>
-        <item>a.baidu.com</item>
-        <item>c.baidu.com</item>
-        <item>cm.pos.baidu.com</item>
-        <item>www.w3.org/1999/xhtml/</item>
-        <item>sh996.dftoutiao.com/</item>
-        <item>gx668.dftoutiao.com/</item>
+   <string-array name="campus_call_name">
+       <item>校园信箱</item>
+       <item>校园卫生</item>
+       <item>联通保障电话</item>
+       <item>查询剩余电量</item>
+       <item>教务科1</item>
+       <item>教务科2</item>
+       <item>教研科1</item>
+       <item>教研科2</item>
+       <item>医务所</item>
+       <item>办公室</item>
+       <item>学籍科</item>
+       <item>警务室</item>
+       <item>校卫队值班电话</item>
+       <item>保卫处主楼门口</item>
+       <item>实践教学科</item>
+       <item>校园管理科</item>
+       <item>水电管理科</item>
+       <item>宿舍管理科</item>
+       <item>保卫处办公室</item>
+       <item>南门值班电话</item>
+       <item>文化交流中心</item>
+       <item>驾驶培训中心</item>
+       <item>体育管理中心</item>
+       <item>南区食堂</item>
+       <item>北区食堂</item>
+       <item>物业公司</item>
+   </string-array>
+    <string-array name="campus_call_num">
+        <item>wyuxfyx@126.com</item>
+        <item>3296164</item>
+        <item>3961838</item>
+        <item>07503294881</item>
+        <item>3296684</item>
+        <item>3296619</item>
+        <item>3296626</item>
+        <item>3296699</item>
+        <item>3296147</item>
+        <item>3296621</item>
+        <item>3296627</item>
+        <item>3296153</item>
+        <item>3296555</item>
+        <item>3296138</item>
+        <item>3296690</item>
+        <item>3296164</item>
+        <item>3296668</item>
+        <item>3296043</item>
+        <item>3296135</item>
+        <item>3296137</item>
+        <item>3299788</item>
+        <item>3299286</item>
+        <item>3299072</item>
+        <item>3296190</item>
+        <item>3299149</item>
+        <item>3299141</item>
     </string-array>
+
 </resources>

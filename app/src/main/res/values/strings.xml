@@ -22,10 +22,21 @@
     <string name="mine_contribution">消息中心</string>
     <string name="mine_watch">观看历史</string>
     <string name="mine_level">我的等级</string>
-    <string name="mine_task">任务中心</string>
-    <string name="mine_game">意见反馈</string>
+    <string name="mine_about">关于</string>
+    <string name="mine_about_version">version: 1.0</string>
+    <string name="mine_about_description">1. 校园应用app专为邑大学生打造 \n
+    2. 含有丰富的学习资源以及即时新闻 \n
+    3. 便捷的校园资讯，方便查询课表成绩等</string>
+    <string name="mine_suggestion">意见反馈</string>
     <string name="mine_setting">设置</string>
     <string name="mine_signup">退出账号</string>
+    <string name="mine_suggest_problem">请描述您遇到的问题</string>
+    <string name="mine_suggest_suggest">请给出您宝贵的建议</string>
+
+    <string name="me_picture">相册</string>
+    <string name="me_camera">相机</string>
+    <string name="me_cancel">取消</string>
+
 
     <!--发现-->
     <string name="tab_select">选择栏目</string>
@@ -40,5 +51,10 @@
     <string name="campus_ems">EMS</string>
     <string name="campus_jd">京东快递</string>
     <string name="campus_uc">优速快递</string>
+
+    <string name="campus_call">点击号码可以直接拨打电话哦~</string>
+    <string name="campus_call_toolbar">校内电话</string>
+    <string name="campus_inform_toolbar">校内通知</string>
+
 
 </resources>

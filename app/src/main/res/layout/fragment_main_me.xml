@@ -119,7 +119,7 @@
                             android:drawableLeft="@mipmap/mine_level" tools:ignore="RtlHardcoded"/>
                     <include layout="@layout/line_h_mine_space"/>
                     <TextView
-                            android:id="@+id/tv_task"
+                            android:id="@+id/tv_suggest"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:drawablePadding="5dp"
@@ -128,11 +128,11 @@
                             android:background="?android:attr/selectableItemBackground"
                             android:textColor="@color/tabSelectorTextColor"
                             android:drawableRight="@mipmap/ic_triangle"
-                            android:text="@string/mine_task"
+                            android:text="@string/mine_suggestion"
                             android:drawableLeft="@mipmap/mine_task" tools:ignore="RtlHardcoded"/>
                     <include layout="@layout/line_h_mine"/>
                     <TextView
-                            android:id="@+id/tv_game"
+                            android:id="@+id/tv_about"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:drawablePadding="5dp"
@@ -141,7 +141,7 @@
                             android:background="?android:attr/selectableItemBackground"
                             android:textColor="@color/tabSelectorTextColor"
                             android:drawableRight="@mipmap/ic_triangle"
-                            android:text="@string/mine_game"
+                            android:text="@string/mine_about"
                             android:drawableLeft="@mipmap/mine_game" tools:ignore="RtlHardcoded"/>
                     <include layout="@layout/line_h_mine_space"/>
                     <TextView

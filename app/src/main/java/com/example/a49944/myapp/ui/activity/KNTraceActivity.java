@@ -1,4 +1,4 @@
-package com.example.a49944.myapp;
+package com.example.a49944.myapp.ui.activity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+import com.example.a49944.myapp.R;
 import com.example.a49944.myapp.adapter.CampusKdRecyclerAdapter;
 import com.example.a49944.myapp.bean.campus.KdTrace;
 import com.example.a49944.myapp.net.kdniao.KdniaoTrackQueryAPI;
@@ -51,11 +52,15 @@ public class KNTraceActivity extends AppCompatActivity implements View.OnClickLi
             super.handleMessage(msg);
             switch (msg.what) {
                 case SERARCH_YES:
+                    mTvData.setVisibility(View.GONE);
+                    mRecyclerView.setVisibility(View.VISIBLE);
                     mAdapter.refreshDate(mList);
                     mAdapter.notifyDataSetChanged();
+                    mList = null;
                     break;
                 case SERARCH_NO:
                     mTvData.setVisibility(View.VISIBLE);
+                    mRecyclerView.setVisibility(View.GONE);
                     break;
             }
         }
@@ -100,11 +105,15 @@ public class KNTraceActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             case R.id.ll_search:
                 //查询
+                if (mList == null) {
+                    mList = new ArrayList<>();
+                }
                 final String kdNumber = mEtNumber.getText().toString();
                 new Thread() {
                     @Override
                     public void run() {
                         KdniaoTrackQueryAPI trackQueryAPI = new KdniaoTrackQueryAPI();
+
                         try {
                             //网络请求
                             String result = trackQueryAPI.getOrderTracesByJson(EXPCODE, kdNumber);
@@ -230,9 +239,9 @@ public class KNTraceActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onBackPressed() {
-        if (mPopWindow.isShowing()) {
+        if (mPopWindow!= null && mPopWindow.isShowing()) {
             mPopWindow.dismiss();
-        } else {
+        }else {
             super.onBackPressed();
         }
     }

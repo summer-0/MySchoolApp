@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_campus"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="?attr/colorPrimary">
+        <TextView
+                android:id="@+id/tv_title_dis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/_ffffff"
+                android:textSize="20sp"
+                android:text="@string/campus_call_toolbar"/>
+    </android.support.v7.widget.Toolbar>
+    <TextView
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/campus_call"
+            android:padding="5dp"
+            android:textSize="12sp"
+            android:textColor="@color/gray"/>
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_call"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>
