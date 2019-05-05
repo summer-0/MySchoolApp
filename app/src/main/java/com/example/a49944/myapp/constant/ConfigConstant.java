@@ -23,4 +23,5 @@ public class ConfigConstant {
     public static final String DIS_TAB_SEHHUI = "shehui";
     public static final String DIS_TAB_CAIJING = "caijing";
     public static final String DIS_TAB_SHISHANG = "shishang";
+    public static final String ME_HISTORY = "me_history";
 }

@@ -3,6 +3,8 @@ package com.example.a49944.myapp.sdk;
 import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -32,6 +34,14 @@ public class BaseApplication extends Application {
 //        CrashHandler.getInstance().init(mAppContext);
         mAppHandler = new Handler();
         initThreadPool();
+
+        Realm.init(this);
+        RealmConfiguration config = new RealmConfiguration
+                .Builder()
+                .name("sc_realm.realm")
+                .schemaVersion(1)
+                .build();
+        Realm.setDefaultConfiguration(config);
     }
 
     /**

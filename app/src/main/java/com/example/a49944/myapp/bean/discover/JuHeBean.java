@@ -160,6 +160,21 @@ public class JuHeBean {
             public void setThumbnail_pic_s03(String thumbnail_pic_s03) {
                 this.thumbnail_pic_s03 = thumbnail_pic_s03;
             }
+
+            @Override
+            public String toString() {
+                return "DataBean{" +
+                        "uniquekey='" + uniquekey + '\'' +
+                        ", title='" + title + '\'' +
+                        ", date='" + date + '\'' +
+                        ", category='" + category + '\'' +
+                        ", author_name='" + author_name + '\'' +
+                        ", url='" + url + '\'' +
+                        ", thumbnail_pic_s='" + thumbnail_pic_s + '\'' +
+                        ", thumbnail_pic_s02='" + thumbnail_pic_s02 + '\'' +
+                        ", thumbnail_pic_s03='" + thumbnail_pic_s03 + '\'' +
+                        '}';
+            }
         }
     }
 }

@@ -114,5 +114,7 @@ public interface ApiRetrofit {
     @GET("Query")
     Call<ResponseBody> requestGuoNei(@Query("key") String key, @Query("page") int page, @Query("rows") int rows, @Query("dtype")String dtype, @Query("format") boolean format);
 
-
+    //初始化校园网站方便获取 cookie
+    @GET("/")
+    Call<String> initCookie();
 }

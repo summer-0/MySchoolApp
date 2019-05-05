@@ -54,6 +54,20 @@ public class ConfigManager {
     }
 
     /**
+     * 保存“我的”历史观看数据
+     */
+    private List<JuHeBean.ResultBean.DataBean> historyData;
+    public void setMeHistoryList(List<JuHeBean.ResultBean.DataBean> historyData, String key){
+        this.historyData = historyData;
+        SPUtils.setDataList(key, historyData);
+    }
+    public List<JuHeBean.ResultBean.DataBean> getHistoryData(String key){
+        historyData = SPUtils.getDataList(key, JuHeBean.ResultBean.DataBean.class);
+        return historyData;
+    }
+
+
+    /**
      * 保存WanAndroid数据
      */
     private List<WanAndroidBean.DataBean> mListBean;

@@ -9,15 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import com.example.a49944.myapp.ui.activity.InformActivity;
-import com.example.a49944.myapp.ui.activity.KNTraceActivity;
+import com.example.a49944.myapp.ui.activity.*;
 import com.example.a49944.myapp.R;
-import com.example.a49944.myapp.ui.activity.SchoolCallActivity;
 import com.example.a49944.myapp.utils.LogUtils;
 
 public class CampusFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = CampusFragment.class.getName();
-    private ImageView mKNTrace,mCall, mInform;
+    private ImageView mKNTrace,mCall, mInform, mGrade, mSchedule, mExam;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,12 +41,18 @@ public class CampusFragment extends Fragment implements View.OnClickListener {
         mKNTrace = view.findViewById(R.id.iv_kntrace);
         mCall = view.findViewById(R.id.iv_call);
         mInform = view.findViewById(R.id.iv_inform);
+        mGrade = view.findViewById(R.id.iv_grade);
+        mSchedule = view.findViewById(R.id.iv_schedule);
+        mExam = view.findViewById(R.id.iv_exam);
     }
 
     private void initData() {
         mKNTrace.setOnClickListener(this);
         mCall.setOnClickListener(this);
         mInform.setOnClickListener(this);
+        mGrade.setOnClickListener(this);
+        mSchedule.setOnClickListener(this);
+        mExam.setOnClickListener(this);
     }
 
     @Override
@@ -65,6 +69,21 @@ public class CampusFragment extends Fragment implements View.OnClickListener {
             case R.id.iv_inform:
                 Intent intentInform = new Intent(getContext(), InformActivity.class);
                 startActivity(intentInform);
+                break;
+            case R.id.iv_grade:
+                //成绩查询
+                Intent intentGrade = new Intent(getContext(), InquireGradeActivity.class);
+                startActivity(intentGrade);
+                break;
+            case R.id.iv_schedule:
+                //课表查询
+                Intent intentSchedule = new Intent(getContext(), ScheduleActivity.class);
+                startActivity(intentSchedule);
+                break;
+            case R.id.iv_exam:
+                //课表查询
+                Intent intentExam = new Intent(getContext(), ExamActivity.class);
+                startActivity(intentExam);
                 break;
             default:
                 break;

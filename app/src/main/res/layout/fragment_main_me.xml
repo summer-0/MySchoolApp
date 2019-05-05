@@ -65,7 +65,7 @@
                         android:background="@color/white">
                     <include layout="@layout/line_h_mine"/>
                     <TextView
-                            android:id="@+id/tv_starLight"
+                            android:id="@+id/tv_history"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:drawablePadding="5dp"
@@ -73,13 +73,13 @@
                             android:padding="13dp"
                             android:background="?android:attr/selectableItemBackground"
                             android:drawableRight="@mipmap/ic_triangle"
-                            android:text="@string/mine_starlight"
+                            android:text="@string/mine_history"
                             android:textColor="@color/tabSelectorTextColor"
-                            android:drawableLeft="@mipmap/mine_starlight"
+                            android:drawableLeft="@mipmap/mine_history"
                             tools:ignore="RtlHardcoded"/>
                     <include layout="@layout/line_h_mine_space"/>
                     <TextView
-                            android:id="@+id/tv_contribution"
+                            android:id="@+id/tv_message"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:drawablePadding="5dp"
@@ -89,35 +89,43 @@
                             android:drawableRight="@mipmap/ic_triangle"
                             android:textColor="@color/tabSelectorTextColor"
                             android:text="@string/mine_contribution"
-                            android:drawableLeft="@mipmap/mine_contribution"
+                            android:drawableLeft="@mipmap/mine_message"
                             tools:ignore="RtlHardcoded"/>
                     <include layout="@layout/line_h_mine"/>
-                    <TextView
-                            android:id="@+id/tv_history"
+                    <LinearLayout
+                            android:id="@+id/ll_clean_cache"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:drawablePadding="5dp"
-                            android:gravity="center_vertical"
-                            android:padding="13dp"
-                            android:background="?android:attr/selectableItemBackground"
-                            android:textColor="@color/tabSelectorTextColor"
-                            android:drawableRight="@mipmap/ic_triangle"
-                            android:text="@string/mine_watch"
-                            android:drawableLeft="@mipmap/mine_watch" tools:ignore="RtlHardcoded"/>
+                            android:orientation="horizontal">
+                        <TextView
+                                android:id="@+id/tv_clean"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:drawablePadding="5dp"
+                                android:padding="13dp"
+                                android:background="?android:attr/selectableItemBackground"
+                                android:textColor="@color/tabSelectorTextColor"
+                                android:text="@string/mine_cleancache"
+                                android:drawableLeft="@mipmap/mine_clean"
+                                tools:ignore="RtlHardcoded"/>
+                        <View
+                                android:layout_weight="1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"/>
+                        <TextView
+                                android:id="@+id/tv_cache_total"
+                                android:layout_width="85dp"
+                                android:layout_height="wrap_content"
+                                android:padding="13dp"
+                                android:gravity="center_vertical|right"
+                                android:background="?android:attr/selectableItemBackground"
+                                android:textColor="@color/tabSelectorTextColor"
+                                android:text="0.0B" tools:ignore="RtlHardcoded"/>
+                    </LinearLayout>
+
                     <include layout="@layout/line_h_mine_space"/>
-                    <TextView
-                            android:id="@+id/tv_level"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:drawablePadding="5dp"
-                            android:gravity="center_vertical"
-                            android:padding="13dp"
-                            android:background="?android:attr/selectableItemBackground"
-                            android:textColor="@color/tabSelectorTextColor"
-                            android:drawableRight="@mipmap/ic_triangle"
-                            android:text="@string/mine_level"
-                            android:drawableLeft="@mipmap/mine_level" tools:ignore="RtlHardcoded"/>
-                    <include layout="@layout/line_h_mine_space"/>
+
                     <TextView
                             android:id="@+id/tv_suggest"
                             android:layout_width="match_parent"
@@ -129,7 +137,7 @@
                             android:textColor="@color/tabSelectorTextColor"
                             android:drawableRight="@mipmap/ic_triangle"
                             android:text="@string/mine_suggestion"
-                            android:drawableLeft="@mipmap/mine_task" tools:ignore="RtlHardcoded"/>
+                            android:drawableLeft="@mipmap/mine_suggest" tools:ignore="RtlHardcoded"/>
                     <include layout="@layout/line_h_mine"/>
                     <TextView
                             android:id="@+id/tv_about"
@@ -142,10 +150,10 @@
                             android:textColor="@color/tabSelectorTextColor"
                             android:drawableRight="@mipmap/ic_triangle"
                             android:text="@string/mine_about"
-                            android:drawableLeft="@mipmap/mine_game" tools:ignore="RtlHardcoded"/>
+                            android:drawableLeft="@mipmap/mine_about" tools:ignore="RtlHardcoded"/>
                     <include layout="@layout/line_h_mine_space"/>
                     <TextView
-                            android:id="@+id/tv_setting"
+                            android:id="@+id/tv_check"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:drawablePadding="5dp"
@@ -154,12 +162,12 @@
                             android:background="?android:attr/selectableItemBackground"
                             android:drawableRight="@mipmap/ic_triangle"
                             android:textColor="@color/tabSelectorTextColor"
-                            android:text="@string/mine_setting"
-                            android:drawableLeft="@mipmap/mine_setting"
+                            android:text="@string/mine_check"
+                            android:drawableLeft="@mipmap/mine_check"
                             tools:ignore="RtlHardcoded"/>
                     <include layout="@layout/line_h_mine"/>
                     <TextView
-                            android:id="@+id/tv_signup"
+                            android:id="@+id/tv_logout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:drawablePadding="5dp"
@@ -169,7 +177,7 @@
                             android:textColor="@color/tabSelectorTextColor"
                             android:drawableRight="@mipmap/ic_triangle"
                             android:text="@string/mine_signup"
-                            android:drawableLeft="@mipmap/mine_game" tools:ignore="RtlHardcoded"/>
+                            android:drawableLeft="@mipmap/mine_logout" tools:ignore="RtlHardcoded"/>
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

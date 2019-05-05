@@ -12,20 +12,34 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.a49944.myapp.R;
+import com.example.a49944.myapp.bean.mine.HistoryData;
+import com.example.a49944.myapp.constant.ConfigConstant;
+import com.example.a49944.myapp.sdk.ConfigManager;
 import com.example.a49944.myapp.ui.activity.WebViewActivity;
 import com.example.a49944.myapp.bean.discover.JuHeBean;
+import com.example.a49944.myapp.utils.LogUtils;
+import io.realm.Realm;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by summer_h on 2019/4/18 8:59
  */
 public class DiscoverRecyclerAdapter extends RecyclerView.Adapter<DiscoverRecyclerAdapter.DisViewHolder> {
+    private static final String TAG = DiscoverRecyclerAdapter.class.getSimpleName();
     private List<JuHeBean.ResultBean.DataBean> mList;
+//    private List<JuHeBean.ResultBean.DataBean> mCacheList;
     private Context mContext;
+//    private ConfigManager mConfigManager;
+    private Realm mRealm;
     public DiscoverRecyclerAdapter(List<JuHeBean.ResultBean.DataBean> list, Context context){
         mList = list;
         mContext = context;
+//        mCacheList = new ArrayList<>();
+//        mConfigManager = ConfigManager.getInstance();
+        //实例化 realm
+        mRealm = Realm.getDefaultInstance();
     }
 
     public void refreshDate(List<JuHeBean.ResultBean.DataBean> list){
@@ -53,8 +67,34 @@ public class DiscoverRecyclerAdapter extends RecyclerView.Adapter<DiscoverRecycl
         disViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //保存数据
+                //JuHeBean.ResultBean.DataBean dataBean = mList.get(i);
+               // mCacheList.add(mList.get(i));
+               // mConfigManager.setMeHistoryList(mCacheList, ConfigConstant.ME_HISTORY);
+
+                final HistoryData historyData = new HistoryData();
                 String url = mList.get(i).getUrl();
+                String title = mList.get(i).getTitle();
                 String category = mList.get(i).getCategory();
+                String author_name = mList.get(i).getAuthor_name();
+                String date = mList.get(i).getDate();
+
+                historyData.setTitle(title);
+                historyData.setUrl(url);
+                historyData.setDate(date);
+                historyData.setAuthor_name(author_name);
+
+                //使用事务块
+                mRealm.executeTransaction(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                        realm.copyToRealm(historyData);
+                    }
+                });
+                if (mRealm != null){
+                    mRealm.close();
+                }
+
                 if (url!=null && !url.isEmpty()){
                     Intent intent = new Intent(mContext, WebViewActivity.class);
                     intent.putExtra("url", url);

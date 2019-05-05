@@ -48,6 +48,16 @@
         </activity>
         <activity android:name=".ui.activity.SettingActivity">
         </activity>
+        <activity android:name=".ui.activity.InquireGradeActivity">
+        </activity>
+        <activity android:name=".ui.activity.ScheduleActivity">
+        </activity>
+        <activity android:name=".ui.activity.ExamActivity">
+        </activity>
+        <activity android:name=".ui.activity.MessageActivity">
+        </activity>
+        <activity android:name=".ui.activity.HistoryActivity">
+        </activity>
 
         <provider
                 android:name="android.support.v4.content.FileProvider"

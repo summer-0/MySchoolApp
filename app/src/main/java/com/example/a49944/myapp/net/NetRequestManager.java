@@ -41,6 +41,9 @@ public class NetRequestManager {
         return instance;
     }
 
+
+
+
     /**
      * retrofit_ rxjava请求Study的navi数据
      * @return  observable对象，含有StudyNavi数据对象
@@ -65,23 +68,26 @@ public class NetRequestManager {
     }
 
 
+    public Call<String> initCookie(){
+        return mApiRetrofit.initCookie();
+    }
 
 
-    public Call<ResponseBody> requestJuHeDataWithRetrofit(String type){
-        Call<ResponseBody> call = mApiRetrofit.getRetrofitJuHe(type, HttpConstant.APP_KEY);
-       //http://v.juhe.cn/toutiao/index?type=top&key=6badfa456fb120860cfd3c92d348ae81
-        return call;
-    }
-    public Call<JuHeBean> requestJuHeRetrofitTest(String type){
-        Call<JuHeBean> call = mApiRetrofit.getJuHeRetrofitTest(type, HttpConstant.APP_KEY);
-        return call;
-    }
-    /**
-     * 测试数据
-     */
-   public Call<TestBean> requestYuLeData(){
-       Call<TestBean> call = mApiRetrofit.getYuLe();
-       return call;
-   }
+//    public Call<ResponseBody> requestJuHeDataWithRetrofit(String type){
+//        Call<ResponseBody> call = mApiRetrofit.getRetrofitJuHe(type, HttpConstant.APP_KEY);
+//       //http://v.juhe.cn/toutiao/index?type=top&key=6badfa456fb120860cfd3c92d348ae81
+//        return call;
+//    }
+//    public Call<JuHeBean> requestJuHeRetrofitTest(String type){
+//        Call<JuHeBean> call = mApiRetrofit.getJuHeRetrofitTest(type, HttpConstant.APP_KEY);
+//        return call;
+//    }
+//    /**
+//     * 测试数据
+//     */
+//   public Call<TestBean> requestYuLeData(){
+//       Call<TestBean> call = mApiRetrofit.getYuLe();
+//       return call;
+//   }
 
 }

@@ -18,17 +18,15 @@
     <string name="mine_follow">关注</string>
     <string name="mine_fans">粉丝</string>
     <string name="mine_recharge">充值</string>
-    <string name="mine_starlight">我的收藏</string>
+    <string name="mine_history">观看历史</string>
     <string name="mine_contribution">消息中心</string>
-    <string name="mine_watch">观看历史</string>
+    <string name="mine_cleancache">清除缓存</string>
     <string name="mine_level">我的等级</string>
     <string name="mine_about">关于</string>
     <string name="mine_about_version">version: 1.0</string>
-    <string name="mine_about_description">1. 校园应用app专为邑大学生打造 \n
-    2. 含有丰富的学习资源以及即时新闻 \n
-    3. 便捷的校园资讯，方便查询课表成绩等</string>
+    <string name="mine_about_description"> 1. 校园应用app专为邑大学生打造 \n2. 含有丰富的学习资源以及即时新闻 \n3. 便捷的校园资讯，方便查询课表成绩等</string>
     <string name="mine_suggestion">意见反馈</string>
-    <string name="mine_setting">设置</string>
+    <string name="mine_check">检查更新</string>
     <string name="mine_signup">退出账号</string>
     <string name="mine_suggest_problem">请描述您遇到的问题</string>
     <string name="mine_suggest_suggest">请给出您宝贵的建议</string>

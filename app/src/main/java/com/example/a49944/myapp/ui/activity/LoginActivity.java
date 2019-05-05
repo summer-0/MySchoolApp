@@ -1,5 +1,6 @@
 package com.example.a49944.myapp.ui.activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,11 +11,24 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.example.a49944.myapp.MainActivity;
 import com.example.a49944.myapp.R;
+import com.example.a49944.myapp.constant.AppConstant;
 import com.example.a49944.myapp.constant.ConfigConstant;
+import com.example.a49944.myapp.img.ImageFractory;
+import com.example.a49944.myapp.net.hhnet.Configuration;
+import com.example.a49944.myapp.net.hhnet.LoginSuccessStatusmessage;
+import com.example.a49944.myapp.net.hhnet.NetClient;
+import com.example.a49944.myapp.net.hhnet.UserManagement;
+import com.example.a49944.myapp.net.hhnet.bean.LoginBean;
 import com.example.a49944.myapp.sdk.ConfigManager;
+import com.example.a49944.myapp.utils.LogUtils;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+    private static final String TAG = LoginActivity.class.getSimpleName();
     private AppCompatEditText mStuNumber, mStuPassword;
     private ImageView mImgYzm;
     private EditText mInputYzm;
@@ -24,6 +38,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private String mStrStuNumber;
     private String mStrStuPassword;
     private String mStrInputYzm;
+    private String cookie;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,6 +47,33 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         initView();
         initData();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //初始化cookie
+        initCookie();
+    }
+
+    /**
+     * 初始化cookie
+     */
+    private void initCookie() {
+        Call<String> initCookie = NetClient.getApiServiceForScalas().initCookie();
+        initCookie.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.code() == Configuration.OK_CODE) {
+                    LogUtils.i(TAG, "成功");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+            }
+        });
     }
 
     private void initView() {
@@ -51,7 +94,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (mConfigManager.getUserInfoSP().getBoolean(ConfigConstant.USER_ISSELECT, false)) {
             mStuNumber.setText(mConfigManager.getUserInfoSP().getString(ConfigConstant.USER_STUNUMBER, ""));
             mStuPassword.setText(mConfigManager.getUserInfoSP().getString(ConfigConstant.USER_STUPASSWORD, ""));
-        }else {
+        } else {
             mIsCheck.setChecked(false);
         }
     }
@@ -66,14 +109,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 mStrStuPassword = mStuPassword.getText().toString().trim(); // 密码
                 mStrInputYzm = mInputYzm.getText().toString().trim(); //验证码
                 login(mStrStuNumber, mStrStuPassword, mStrInputYzm);
-                finish();
+                //finish();
                 break;
             case R.id.img_yzm:
                 //更换验证码
+                getVerifyCode();
                 break;
             default:
                 break;
         }
+    }
+
+    /**
+     * 获取验证码图片
+     */
+    private void getVerifyCode() {
+        //获取验证码的url拼接
+        cookie = UserManagement.getCookie();
+        String url = AppConstant.BASE_URL + "yzm?d=" + System.currentTimeMillis();
+        ImageFractory.MGlideYZM(this, url, "JSESSIONID=" + cookie, mImgYzm, R.mipmap.yzm);
+       // LogUtils.i(TAG, cookie);
     }
 
     /**
@@ -86,7 +141,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void saveLoginStatus(String strStuNumber, String strStuPassword, boolean checked) {
         if (checked) {  //  true  保存密码
             mConfigManager.setSaveLoginState(strStuNumber, strStuPassword, checked);
-        }else {     //不保存
+        } else {     //不保存
             SharedPreferences.Editor edit = mConfigManager.getUserInfoSP().edit();
             edit.putBoolean(ConfigConstant.USER_ISSELECT, checked);
             edit.apply();
@@ -96,12 +151,33 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     /**
      * 登录
      *
-     * @param mStrStuNumber
-     * @param mStrStuPassword
-     * @param mStrInputYzm
+     * @param strStuNumber
+     * @param strStuPasswords
+     * @param strInputYzm
      */
-    private void login(String mStrStuNumber, String mStrStuPassword, String mStrInputYzm) {
+    private void login(String strStuNumber, String strStuPasswords, String strInputYzm) {
+        Call<LoginBean> loginBeanCall = NetClient.getApiService().login(strStuNumber, strStuPasswords, strInputYzm);
+        loginBeanCall.enqueue(new Callback<LoginBean>() {
+            @Override
+            public void onResponse(Call<LoginBean> call, Response<LoginBean> response) {
+                if (response.code() == Configuration.LOGIN_SUCCESS){
+                    //登录成功
+                    if (response.body().getCode() == Configuration.LOGIN_SUCCESS){
+                        UserManagement.setIsLogin(true);
+                        LoginSuccessStatusmessage statusmessage = new LoginSuccessStatusmessage();
+                        statusmessage.setLogin(true);
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }
+            }
 
+            @Override
+            public void onFailure(Call<LoginBean> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override

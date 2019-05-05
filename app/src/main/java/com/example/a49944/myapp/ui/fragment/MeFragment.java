@@ -21,13 +21,11 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.PopupWindow;
-import android.widget.TextView;
+import android.widget.*;
 import com.example.a49944.myapp.R;
-import com.example.a49944.myapp.ui.activity.AboutActivity;
-import com.example.a49944.myapp.ui.activity.FeedBackActivity;
-import com.example.a49944.myapp.ui.activity.LoginActivity;
+import com.example.a49944.myapp.net.hhnet.UserManagement;
+import com.example.a49944.myapp.sdk.DataCleanManager;
+import com.example.a49944.myapp.ui.activity.*;
 import com.example.a49944.myapp.utils.LogUtils;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -55,7 +53,8 @@ public class MeFragment extends Fragment implements SwipeRefreshLayout.OnRefresh
     private Button mBtnLogin, mBtnPicture, mBtnCamera, mBtnCancel;
     private CircleImageView mCircleImg;
     private PopupWindow mPopupWindow;
-    private TextView mTvAbout, mTvSuggest;
+    private TextView mTvAbout, mTvSuggest, mTvcheck, mTvCacheTotal, mTvLogOut,mTvMessage, mTvHistory;
+    private LinearLayout mLlCleanCache;
     private View rootView;
 
     //调用照相机返回图片文件
@@ -109,14 +108,38 @@ public class MeFragment extends Fragment implements SwipeRefreshLayout.OnRefresh
         mCircleImg = view.findViewById(R.id.iv_user);
         mTvAbout = view.findViewById(R.id.tv_about);
         mTvSuggest = view.findViewById(R.id.tv_suggest);
+        mTvcheck = view.findViewById(R.id.tv_check);
+        mLlCleanCache = view.findViewById(R.id.ll_clean_cache);
+        mTvCacheTotal = view.findViewById(R.id.tv_cache_total);
+        mTvLogOut = view.findViewById(R.id.tv_logout);
+        mTvMessage = view.findViewById(R.id.tv_message);
+        mTvHistory = view.findViewById(R.id.tv_history);
     }
 
     private void initData() {
+        if (UserManagement.isIsLogin()){
+            mBtnLogin.setText("150806 刘新华");
+        }else {
+            mBtnLogin.setText("立即登录");
+        }
         mSwipeRefresh.setOnRefreshListener(this);
         mBtnLogin.setOnClickListener(this);
         mCircleImg.setOnClickListener(this);
         mTvAbout.setOnClickListener(this);
         mTvSuggest.setOnClickListener(this);
+        mTvcheck.setOnClickListener(this);
+        mLlCleanCache.setOnClickListener(this);
+        mTvLogOut.setOnClickListener(this);
+        mTvMessage.setOnClickListener(this);
+        mTvHistory.setOnClickListener(this);
+        //计算缓存
+        try {
+            String totalCacheSize = DataCleanManager.getTotalCacheSize(mContext);
+            mTvCacheTotal.setText(totalCacheSize);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     //下拉刷新
@@ -134,7 +157,6 @@ public class MeFragment extends Fragment implements SwipeRefreshLayout.OnRefresh
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_login:
-                //
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
                 break;
@@ -148,6 +170,35 @@ public class MeFragment extends Fragment implements SwipeRefreshLayout.OnRefresh
             case R.id.tv_suggest:
                 Intent intentSuggest = new Intent(getActivity(), FeedBackActivity.class);
                 startActivity(intentSuggest);
+                break;
+            case R.id.tv_check:
+                Toast.makeText(mContext, "已是最新版本", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.ll_clean_cache:
+                //清除缓存
+                DataCleanManager.clearAllCache(mContext);
+                try {
+                    mTvCacheTotal.setText(DataCleanManager.getTotalCacheSize(mContext));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            case R.id.tv_message:
+                Intent intentMessage = new Intent(getActivity(), MessageActivity.class);
+                startActivity(intentMessage);
+                break;
+            case R.id.tv_history:
+                Intent intentHistory= new Intent(getActivity(), HistoryActivity.class);
+                startActivity(intentHistory);
+                break;
+            case R.id.tv_logout:
+                if (UserManagement.isIsLogin()){
+                    UserManagement.setIsLogin(false);
+                    Intent intentLogout = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intentLogout);
+                }else {
+                    Toast.makeText(mContext, "未登录", Toast.LENGTH_SHORT).show();
+                }
                 break;
             default:
                 break;
