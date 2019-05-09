@@ -128,7 +128,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         cookie = UserManagement.getCookie();
         String url = AppConstant.BASE_URL + "yzm?d=" + System.currentTimeMillis();
         ImageFractory.MGlideYZM(this, url, "JSESSIONID=" + cookie, mImgYzm, R.mipmap.yzm);
-       // LogUtils.i(TAG, cookie);
+        // LogUtils.i(TAG, cookie);
     }
 
     /**
@@ -160,16 +160,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         loginBeanCall.enqueue(new Callback<LoginBean>() {
             @Override
             public void onResponse(Call<LoginBean> call, Response<LoginBean> response) {
-                if (response.code() == Configuration.LOGIN_SUCCESS){
+                if (response.body().getCode() == Configuration.LOGIN_SUCCESS) {
                     //登录成功
-                    if (response.body().getCode() == Configuration.LOGIN_SUCCESS){
-                        UserManagement.setIsLogin(true);
-                        LoginSuccessStatusmessage statusmessage = new LoginSuccessStatusmessage();
-                        statusmessage.setLogin(true);
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
+                    UserManagement.setIsLogin(true);
+                    LoginSuccessStatusmessage statusmessage = new LoginSuccessStatusmessage();
+                    statusmessage.setLogin(true);
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+
                 }
             }
 

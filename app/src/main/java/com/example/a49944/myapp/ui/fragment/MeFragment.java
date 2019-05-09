@@ -2,8 +2,10 @@ package com.example.a49944.myapp.ui.fragment;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -22,15 +24,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.example.a49944.myapp.MainActivity;
 import com.example.a49944.myapp.R;
+import com.example.a49944.myapp.adapter.MediaAdapter;
 import com.example.a49944.myapp.net.hhnet.UserManagement;
 import com.example.a49944.myapp.sdk.DataCleanManager;
 import com.example.a49944.myapp.ui.activity.*;
 import com.example.a49944.myapp.utils.LogUtils;
+import com.guoxiaoxing.phoenix.core.PhoenixOption;
+import com.guoxiaoxing.phoenix.core.model.MediaEntity;
+import com.guoxiaoxing.phoenix.core.model.MimeType;
+import com.guoxiaoxing.phoenix.picker.Phoenix;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -53,10 +65,11 @@ public class MeFragment extends Fragment implements SwipeRefreshLayout.OnRefresh
     private Button mBtnLogin, mBtnPicture, mBtnCamera, mBtnCancel;
     private CircleImageView mCircleImg;
     private PopupWindow mPopupWindow;
-    private TextView mTvAbout, mTvSuggest, mTvcheck, mTvCacheTotal, mTvLogOut,mTvMessage, mTvHistory;
+    private TextView mTvAbout, mTvSuggest, mTvcheck, mTvCacheTotal, mTvLogOut, mTvMessage, mTvHistory;
     private LinearLayout mLlCleanCache;
     private View rootView;
-
+    private MediaAdapter mMediaAdapter;
+    public static final int REQUEST_CODE = 0x000111;
     //调用照相机返回图片文件
     private File mTempFile;
     //最后显示的图片文件
@@ -87,9 +100,9 @@ public class MeFragment extends Fragment implements SwipeRefreshLayout.OnRefresh
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (rootView == null){
+        if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_main_me, null);
-        }else {
+        } else {
             return rootView;
         }
         return rootView;
@@ -117,9 +130,10 @@ public class MeFragment extends Fragment implements SwipeRefreshLayout.OnRefresh
     }
 
     private void initData() {
-        if (UserManagement.isIsLogin()){
+//        mMediaAdapter = new MediaAdapter(mContext);
+        if (UserManagement.isIsLogin()) {
             mBtnLogin.setText("150806 刘新华");
-        }else {
+        } else {
             mBtnLogin.setText("立即登录");
         }
         mSwipeRefresh.setOnRefreshListener(this);
@@ -161,7 +175,10 @@ public class MeFragment extends Fragment implements SwipeRefreshLayout.OnRefresh
                 startActivity(intent);
                 break;
             case R.id.iv_user:
-                initPermission();
+                // initPermission();
+                //initPhoenix();
+                showPopWindow();
+                //initPhoenix();
                 break;
             case R.id.tv_about:
                 Intent intentAbout = new Intent(getActivity(), AboutActivity.class);
@@ -188,21 +205,43 @@ public class MeFragment extends Fragment implements SwipeRefreshLayout.OnRefresh
                 startActivity(intentMessage);
                 break;
             case R.id.tv_history:
-                Intent intentHistory= new Intent(getActivity(), HistoryActivity.class);
+                Intent intentHistory = new Intent(getActivity(), HistoryActivity.class);
                 startActivity(intentHistory);
                 break;
             case R.id.tv_logout:
-                if (UserManagement.isIsLogin()){
+                if (UserManagement.isIsLogin()) {
                     UserManagement.setIsLogin(false);
                     Intent intentLogout = new Intent(getActivity(), LoginActivity.class);
                     startActivity(intentLogout);
-                }else {
+                } else {
                     Toast.makeText(mContext, "未登录", Toast.LENGTH_SHORT).show();
                 }
                 break;
             default:
                 break;
         }
+    }
+
+    private void initPhoenix() {
+        Phoenix.with()
+                .theme(PhoenixOption.THEME_DEFAULT) //主题
+                .fileType(MimeType.ofAll()) //显示的文件类型图片、视频、图片和视频
+                .maxPickNumber(1)  //最大选择数量
+                .minPickNumber(0)   //最小选择数量
+                .spanCount(4)   //每行显示个数
+                .enablePreview(true)    //是否开启预览
+                .enableCamera(true) //是否开启拍照
+                .enableAnimation(true)  //选择界面图片点击效果
+                .enableCompress(true)   //是否开启压缩
+                .compressPictureFilterSize(1024)    //多少kb以下的图片不压缩
+                .compressVideoFilterSize(2048)  //多少kb以下的视频不压缩
+                .thumbnailHeight(160)   //选择界面图片高度
+                .thumbnailWidth(160)    //选择界面图片宽度
+                .enableClickSound(false)    //是否开启点击声音
+                //      .pickedMediaList(mMediaAdapter.getData()) //已选图片数据
+                .videoFilterTime(0) //显示多少秒以内的视频
+                .mediaFilterSize(10000) //显示多少kb以下的图片/视频， 默认为0，表示不限制
+                .start(MeFragment.this, PhoenixOption.TYPE_PICK_MEDIA, REQUEST_CODE);
     }
 
     /**
@@ -226,26 +265,27 @@ public class MeFragment extends Fragment implements SwipeRefreshLayout.OnRefresh
     private void showPopWindow() {
         View popview = getLayoutInflater().inflate(R.layout.popwindow_photo_select, null);
         mPopupWindow = new PopupWindow(popview, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        mBtnPicture = popview.findViewById(R.id.btn_picture);
+        // mBtnPicture = popview.findViewById(R.id.btn_picture);
         mBtnCamera = popview.findViewById(R.id.btn_camera);
         mBtnCancel = popview.findViewById(R.id.btn_cancel);
 
-        mBtnPicture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mPopupWindow.isShowing()) {
-                    mPopupWindow.dismiss();
-                }
-                getPicFromAlbm();
-            }
-        });
+//        mBtnPicture.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (mPopupWindow.isShowing()) {
+//                    mPopupWindow.dismiss();
+//                }
+//                getPicFromAlbm();
+//            }
+//        });
         mBtnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mPopupWindow.isShowing()) {
                     mPopupWindow.dismiss();
                 }
-                getPicFromCamera();
+                //getPicFromCamera();
+                initPhoenix();
             }
         });
         mBtnCancel.setOnClickListener(new View.OnClickListener() {
@@ -266,10 +306,10 @@ public class MeFragment extends Fragment implements SwipeRefreshLayout.OnRefresh
     private void getPicFromCamera() {
         long ms = System.currentTimeMillis() / 1000;
 
-       // mTempFile = new File(Environment.getExternalStorageDirectory().getPath(), ms + ".png");
-        mTempFile = new File( mContext.getExternalCacheDir() + "/photo.png");
+        // mTempFile = new File(Environment.getExternalStorageDirectory().getPath(), ms + ".png");
+        mTempFile = new File(mContext.getExternalCacheDir() + "/photo.png");
         try {
-            if (mTempFile.exists()){
+            if (mTempFile.exists()) {
                 mTempFile.delete();
             }
             mTempFile.createNewFile();
@@ -303,7 +343,22 @@ public class MeFragment extends Fragment implements SwipeRefreshLayout.OnRefresh
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
+        if (requestCode == REQUEST_CODE ) {
+            //返回的数据
+            List<MediaEntity> result = Phoenix.result(data);
+            MediaEntity mediaEntity = result.get(0);
+            String path = mediaEntity.getFinalPath();
+            RequestOptions options = new RequestOptions()
+                    .centerCrop()
+                    .placeholder(R.color.color_f6)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL);
+            Glide.with(mContext)
+                    .load(path)
+                    .apply(options)
+                    .into(mCircleImg);
+            // mMediaAdapter.setData(result);
+        }
+        /*switch (requestCode) {
             case CAMERA_REQUEST_CODE:   //调用相机后返回
                 if (resultCode == RESULT_OK) {
                     //用相机返回的照片去用剪裁也需要对uri进行处理
@@ -333,7 +388,7 @@ public class MeFragment extends Fragment implements SwipeRefreshLayout.OnRefresh
                     LogUtils.i(TAG, "onActivityResult : data为空");
                 }
                 break;
-        }
+        }*/
     }
 
     /**
@@ -389,4 +444,5 @@ public class MeFragment extends Fragment implements SwipeRefreshLayout.OnRefresh
         LogUtils.i(TAG, "getPath = " + mFile);
         return mFile;
     }
+
 }

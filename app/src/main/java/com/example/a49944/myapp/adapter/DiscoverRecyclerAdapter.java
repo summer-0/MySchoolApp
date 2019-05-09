@@ -3,6 +3,7 @@ package com.example.a49944.myapp.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentTabHost;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -83,7 +84,7 @@ public class DiscoverRecyclerAdapter extends RecyclerView.Adapter<DiscoverRecycl
                 historyData.setUrl(url);
                 historyData.setDate(date);
                 historyData.setAuthor_name(author_name);
-
+                
                 //使用事务块
                 mRealm.executeTransaction(new Realm.Transaction() {
                     @Override

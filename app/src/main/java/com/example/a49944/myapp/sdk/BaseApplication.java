@@ -3,6 +3,10 @@ package com.example.a49944.myapp.sdk;
 import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
+import android.widget.ImageView;
+import com.bumptech.glide.Glide;
+import com.guoxiaoxing.phoenix.core.listener.ImageLoader;
+import com.guoxiaoxing.phoenix.picker.Phoenix;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
@@ -42,6 +46,16 @@ public class BaseApplication extends Application {
                 .schemaVersion(1)
                 .build();
         Realm.setDefaultConfiguration(config);
+
+        Phoenix.config()
+                .imageLoader(new ImageLoader() {
+                    @Override
+                    public void loadImage(Context context, ImageView imageView, String imagePath, int type) {
+                        Glide.with(context)
+                                .load(imagePath)
+                                .into(imageView);
+                    }
+                });
     }
 
     /**
