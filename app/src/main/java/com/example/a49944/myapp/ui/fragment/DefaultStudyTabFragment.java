@@ -38,7 +38,7 @@ import java.util.List;
 public class DefaultStudyTabFragment extends Fragment {
     private static final String TAG = DefaultStudyTabFragment.class.getSimpleName();
     private static final int SWIPE_REFRESH = 0;
-    private static int mTag;
+    private  int mTag;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
     private TextView mTextView;
@@ -98,6 +98,7 @@ public class DefaultStudyTabFragment extends Fragment {
         List<WanAndroidBean.DataBean.ArticlesBean> studyTabList = mConfigManager.getStudyTabList("study_" + mTag);
         if (studyTabList != null && studyTabList.size() > 0) {
             mListBean = studyTabList;
+            mTextView.setVisibility(View.GONE);
         }
         mAdapter = new StudyRecyclerAdapterTest(mListBean, getContext());
         mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
@@ -107,7 +108,6 @@ public class DefaultStudyTabFragment extends Fragment {
             LogUtils.i(TAG, "正在准备请求" + mTag + "数据");
             requestData();
         }
-        mTextView.setVisibility(View.GONE);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -129,6 +129,7 @@ public class DefaultStudyTabFragment extends Fragment {
             public void onNext(WanAndroidBean wanAndroidBean) {
                 LogUtils.i(TAG, "onNext");
                 List<WanAndroidBean.DataBean> data = wanAndroidBean.getData();
+                mListBean.clear();
                 switch (mTag) {
                     case 272:
                         mListBean = data.get(0).getArticles();       //常用网站

@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import com.example.a49944.myapp.bean.discover.JuHeBean;
 import com.example.a49944.myapp.bean.study.WanAndroidBean;
 import com.example.a49944.myapp.constant.ConfigConstant;
+import com.example.a49944.myapp.net.hhnet.Configuration;
+import com.example.a49944.myapp.net.hhnet.bean.ScheduleBean;
 
 import java.util.List;
 
@@ -113,6 +115,62 @@ public class ConfigManager {
         }
         return mLoginToken;
     }
+    private String mPhotoPath;
+    public void setPhotoPath(String path){
+        mPhotoPath = path;
+        SPUtils.putValue(ConfigConstant.PHOTO_PATH, path);
+    }
+    public String getPhotoPath(){
+        if (mPhotoPath == null){
+            mPhotoPath = (String) SPUtils.getValue(ConfigConstant.PHOTO_PATH, "");
+        }
+        return mPhotoPath;
+    }
+
+    /**
+     * 保存课表选择的学年
+     */
+    private String mScheduleTerm;
+    public void setScheduleTerm(String term){
+        mScheduleTerm = term;
+        SPUtils.putValue(ConfigConstant.SCHEDULE_LAST_TERM, term);
+    }
+    public String getScheduleTerm(){
+        if (mScheduleTerm == null){
+            mScheduleTerm = (String) SPUtils.getValue(ConfigConstant.SCHEDULE_LAST_TERM, "");
+        }
+        return mScheduleTerm;
+    }
+
+    /**
+     * 保存课表选择的周数
+     */
+    private String mScheduleWeek;
+    public void setScheduleWeek(String week){
+        mScheduleWeek = week;
+        SPUtils.putValue(ConfigConstant.SCHEDULE_LAST_WEEK, week);
+    }
+    public String getScheduleWeek(){
+        if (mScheduleWeek == null){
+            mScheduleWeek = (String) SPUtils.getValue(ConfigConstant.SCHEDULE_LAST_WEEK, "");
+        }
+        return mScheduleWeek;
+    }
+
+    /**
+     * 保存请求到课表的数据集合
+     */
+    private List<ScheduleBean.RowsBean> mScheduleList;
+    public void setScheduleList(List<ScheduleBean.RowsBean> scheduleList,String key){
+        mScheduleList = scheduleList;
+        SPUtils.setDataList(key, scheduleList);
+    }
+    public List<ScheduleBean.RowsBean> getScheduleList(String key){
+        mScheduleList = SPUtils.getDataList(key, ScheduleBean.RowsBean.class);
+        return mScheduleList;
+    }
+
+
 
     /**
      * 保存登录状态

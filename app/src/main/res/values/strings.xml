@@ -53,6 +53,9 @@
     <string name="campus_call">点击号码可以直接拨打电话哦~</string>
     <string name="campus_call_toolbar">校内电话</string>
     <string name="campus_inform_toolbar">校内通知</string>
+    <string name="inquire_grade_dialog_title">选择学年</string>
+    <string name="bt_positive">查询</string>
+    <string name="btn_negative">取消</string>
 
 
 </resources>

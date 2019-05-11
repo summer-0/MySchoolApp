@@ -59,4 +59,8 @@ dependencies {
     implementation 'com.github.guoxiaoxing:phoenix-compress-picture:1.0.15'
     //选填 - 视频压缩，开启功能：Phoenix.with().enableCompress(true)，获取结果：MediaEntity.getCompressPath()
     implementation 'com.github.guoxiaoxing:phoenix-compress-video:1.0.15'
+    
+    //floatingbutton
+//    implementation "com.leinardi.android:speed-dial:2.0.1"
+    implementation 'com.github.clans:fab:1.6.4'
 }

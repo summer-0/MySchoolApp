@@ -19,7 +19,7 @@
                 android:text="考试安排"/>
     </android.support.v7.widget.Toolbar>
    <android.support.v7.widget.RecyclerView
-           android:id="@+id/recycler_grade"
+           android:id="@+id/recycler_exam"
            android:layout_width="match_parent"
            android:layout_height="match_parent">
 

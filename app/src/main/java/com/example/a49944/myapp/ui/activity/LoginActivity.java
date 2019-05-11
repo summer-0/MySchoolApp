@@ -66,6 +66,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.code() == Configuration.OK_CODE) {
                     LogUtils.i(TAG, "成功");
+                    getVerifyCode();
                 }
             }
 
@@ -163,10 +164,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (response.body().getCode() == Configuration.LOGIN_SUCCESS) {
                     //登录成功
                     UserManagement.setIsLogin(true);
-                    LoginSuccessStatusmessage statusmessage = new LoginSuccessStatusmessage();
-                    statusmessage.setLogin(true);
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
+                    //LoginSuccessStatusmessage.setLogin(true);
+                    //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    //startActivity(intent);
                     finish();
 
                 }

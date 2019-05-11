@@ -19,6 +19,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +32,7 @@ import com.example.a49944.myapp.MainActivity;
 import com.example.a49944.myapp.R;
 import com.example.a49944.myapp.adapter.MediaAdapter;
 import com.example.a49944.myapp.net.hhnet.UserManagement;
+import com.example.a49944.myapp.sdk.ConfigManager;
 import com.example.a49944.myapp.sdk.DataCleanManager;
 import com.example.a49944.myapp.ui.activity.*;
 import com.example.a49944.myapp.utils.LogUtils;
@@ -57,6 +59,9 @@ public class MeFragment extends Fragment implements SwipeRefreshLayout.OnRefresh
     private static final int CAMERA_PERMISSIONS_REQUEST_CODE = 0x03;
     private static final int STORAGE_PERMISSIONS_REQUEST_CODE = 0x04;
 
+    //登录正确码
+    private static final int LOGIN_REQUEST = 4;
+
 
     //相机拍摄的头像文件(本次演示存放在SD卡根目录下)
     private static final File USER_ICON = new File(Environment.getExternalStorageDirectory(), "user_icon.jpg");
@@ -69,6 +74,7 @@ public class MeFragment extends Fragment implements SwipeRefreshLayout.OnRefresh
     private LinearLayout mLlCleanCache;
     private View rootView;
     private MediaAdapter mMediaAdapter;
+    private ConfigManager mConfigManager;
     public static final int REQUEST_CODE = 0x000111;
     //调用照相机返回图片文件
     private File mTempFile;
@@ -131,6 +137,18 @@ public class MeFragment extends Fragment implements SwipeRefreshLayout.OnRefresh
 
     private void initData() {
 //        mMediaAdapter = new MediaAdapter(mContext);
+        mConfigManager = ConfigManager.getInstance();
+        String photoPath = mConfigManager.getPhotoPath();
+        if (photoPath != null && !TextUtils.isEmpty(photoPath)){
+            RequestOptions options = new RequestOptions()
+                    .centerCrop()
+                    .placeholder(R.color.color_f6)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL);
+            Glide.with(mContext)
+                    .load(photoPath)
+                    .apply(options)
+                    .into(mCircleImg);
+        }
         if (UserManagement.isIsLogin()) {
             mBtnLogin.setText("150806 刘新华");
         } else {
@@ -171,8 +189,12 @@ public class MeFragment extends Fragment implements SwipeRefreshLayout.OnRefresh
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_login:
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(intent);
+                if (!UserManagement.isIsLogin()){ //如果未登录，则跳转登录页面
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    startActivityForResult(intent, LOGIN_REQUEST);
+                }
+
+                //startActivity(intent);
                 break;
             case R.id.iv_user:
                 // initPermission();
@@ -348,6 +370,7 @@ public class MeFragment extends Fragment implements SwipeRefreshLayout.OnRefresh
             List<MediaEntity> result = Phoenix.result(data);
             MediaEntity mediaEntity = result.get(0);
             String path = mediaEntity.getFinalPath();
+            mConfigManager.setPhotoPath(path);
             RequestOptions options = new RequestOptions()
                     .centerCrop()
                     .placeholder(R.color.color_f6)
@@ -357,6 +380,13 @@ public class MeFragment extends Fragment implements SwipeRefreshLayout.OnRefresh
                     .apply(options)
                     .into(mCircleImg);
             // mMediaAdapter.setData(result);
+        }
+        if (requestCode == LOGIN_REQUEST){
+            if (UserManagement.isIsLogin()) {
+                mBtnLogin.setText("150806 刘新华");
+            } else {
+                mBtnLogin.setText("立即登录");
+            }
         }
         /*switch (requestCode) {
             case CAMERA_REQUEST_CODE:   //调用相机后返回
@@ -444,5 +474,6 @@ public class MeFragment extends Fragment implements SwipeRefreshLayout.OnRefresh
         LogUtils.i(TAG, "getPath = " + mFile);
         return mFile;
     }
+
 
 }

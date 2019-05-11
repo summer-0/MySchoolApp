@@ -58,6 +58,11 @@
         </activity>
         <activity android:name=".ui.activity.HistoryActivity">
         </activity>
+        <activity android:name=".ui.activity.SelectClassNameActivity"
+                  android:launchMode="singleTop"
+                  android:theme="@style/DialogTheme">
+        </activity>
+
 
         <provider
                 android:name="android.support.v4.content.FileProvider"

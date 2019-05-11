@@ -58,7 +58,7 @@
                 android:layout_gravity="center_vertical"
                 android:id="@+id/img_yzm"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0.3"
                 android:clickable="true"
                 android:scaleType="centerCrop"

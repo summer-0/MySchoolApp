@@ -97,6 +97,7 @@ public class DefaultDisTabFragment extends Fragment {
         List<JuHeBean.ResultBean.DataBean> disTabList = mConfigManager.getDisTabList(mTag);
         if (disTabList != null && disTabList.size() > 0) {
             mListBean = disTabList;
+            mTextView.setVisibility(View.GONE);
         }
         mAdapter = new DiscoverRecyclerAdapter(mListBean, getContext());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -106,7 +107,7 @@ public class DefaultDisTabFragment extends Fragment {
             LogUtils.i(TAG, "正在准备请求" + mTag + "数据");
             requestData();
         }
-        mTextView.setVisibility(View.GONE);
+
         mSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -126,6 +127,7 @@ public class DefaultDisTabFragment extends Fragment {
             @Override
             public void onNext(JuHeBean juHeBean) {
                 LogUtils.i(TAG, "onNext");
+                mListBean.clear();
                 mListBean = juHeBean.getResult().getData();
                 LogUtils.i(TAG, mListBean.get(0).getTitle());
                 mAdapter.refreshDate(mListBean);

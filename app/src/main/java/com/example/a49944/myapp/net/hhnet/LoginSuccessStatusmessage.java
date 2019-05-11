@@ -9,11 +9,11 @@ package com.example.a49944.myapp.net.hhnet;
 public class LoginSuccessStatusmessage {
     private static boolean isLogin = false;
 
-    public boolean isLogin() {
+    public static  boolean isLogin() {
         return isLogin;
     }
 
-    public void setLogin(boolean login) {
+    public static void setLogin(boolean login) {
         isLogin = login;
     }
 }

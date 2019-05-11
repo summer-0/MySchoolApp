@@ -40,4 +40,16 @@
     <color name="color_deep_default">#4a4a4a</color>
 
     <color name="color_f6">#f6f6f6</color>
+    <color name="fab_color">#1976D2</color>
+
+    <!--课表的颜色-->
+    <color name="c_pink">#cca8ca</color>
+    <color name="c_light">#7efbff</color>
+    <color name="c_grap">#FFA2ADFF</color>
+    <color name="C_origin">#FFFFF198</color>
+    <color name="c_red">#FFFF98C8</color>
+    <color name="material_white_1000">#ffffff</color>
+    <color name="inbox_primary">#4285f4</color>
+    <color name="inbox_purple">#8E24AA</color>
+
 </resources>

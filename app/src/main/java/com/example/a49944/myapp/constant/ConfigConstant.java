@@ -24,4 +24,8 @@ public class ConfigConstant {
     public static final String DIS_TAB_CAIJING = "caijing";
     public static final String DIS_TAB_SHISHANG = "shishang";
     public static final String ME_HISTORY = "me_history";
+
+    public static final String PHOTO_PATH = "photo_path";
+    public static final String SCHEDULE_LAST_TERM = "schedule_last_term"; //最后一次查询的课表学期
+    public static final String SCHEDULE_LAST_WEEK = "schedule_last_week"; //最后一次查询的课表学期
 }

@@ -3,6 +3,7 @@ package com.example.a49944.myapp.net.hhnet;
 import com.example.a49944.myapp.net.hhnet.bean.GradeBean;
 import com.example.a49944.myapp.net.hhnet.bean.LoginBean;
 import com.example.a49944.myapp.net.hhnet.bean.ScheduleBean;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -49,6 +50,17 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("xsgrkbcx!getDataList.action?order=asc&page=1&rows=500&sort=kxh")
     Call<ScheduleBean> inquireSchedule(@Field("xnxqdm") String yearMonth, @Field("zc") String week);
+
+    /**
+     * http://202.192.240.29/xsgrkbcx!getKbRq.action?xnxqdm=201702&zc=5
+     *   @POST("xsgrkbcx!getKbRq.action")
+     * @param yearMonth
+     * @param week
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("xsgrkbcx!getDataList.action?order=asc&page=1&rows=500&sort=kxh")
+    Call<ResponseBody> inquireScheduleWeek(@Field("xnxqdm") String yearMonth, @Field("zc") String week);
 
 
     /**
