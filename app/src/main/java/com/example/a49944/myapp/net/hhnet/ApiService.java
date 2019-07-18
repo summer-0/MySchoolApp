@@ -1,5 +1,6 @@
 package com.example.a49944.myapp.net.hhnet;
 
+import com.example.a49944.myapp.bean.exam.ExamBean;
 import com.example.a49944.myapp.net.hhnet.bean.GradeBean;
 import com.example.a49944.myapp.net.hhnet.bean.LoginBean;
 import com.example.a49944.myapp.net.hhnet.bean.ScheduleBean;
@@ -61,6 +62,18 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("xsgrkbcx!getDataList.action?order=asc&page=1&rows=500&sort=kxh")
     Call<ResponseBody> inquireScheduleWeek(@Field("xnxqdm") String yearMonth, @Field("zc") String week);
+
+    /**
+     * http://202.192.240.29/xsksap!getDataList.action
+     * 测试查询考试安排
+     * xnxqdm=201701&ksaplxdm=&page=1&rows=20&sort=zc%2Cxq%2Cjcdm2&order=asc
+     * @param
+     * @param yearMonth
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("xsksap!getDataList.action")
+    Call<ExamBean> inquireExam(@Field("xnxqdm") String yearMonth);
 
 
     /**

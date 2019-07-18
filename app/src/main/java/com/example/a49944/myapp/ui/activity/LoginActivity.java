@@ -164,9 +164,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (response.body().getCode() == Configuration.LOGIN_SUCCESS) {
                     //登录成功
                     UserManagement.setIsLogin(true);
-                    //LoginSuccessStatusmessage.setLogin(true);
-                    //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    //startActivity(intent);
+                    mConfigManager.setStrNumber(strStuNumber);
                     finish();
 
                 }

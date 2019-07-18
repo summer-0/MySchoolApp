@@ -143,6 +143,21 @@ public class ConfigManager {
     }
 
     /**
+     * 保存考试安排选择学期
+     */
+    private String mExamTerm;
+    public void setExamTerm(String term){
+        mExamTerm = term;
+        SPUtils.putValue(ConfigConstant.EXAM_LAST_TERM, term);
+    }
+    public String getExamTerm(){
+        if (mExamTerm == null){
+            mExamTerm = (String) SPUtils.getValue(ConfigConstant.EXAM_LAST_TERM, "");
+        }
+        return mExamTerm;
+    }
+
+    /**
      * 保存课表选择的周数
      */
     private String mScheduleWeek;
@@ -196,6 +211,22 @@ public class ConfigManager {
         SharedPreferences sp = AppUtils.getAppContext().getSharedPreferences(ConfigConstant.USER_INFO, Context.MODE_PRIVATE);
         return sp;
     }
+
+    /**
+     * 保存登录后的学号
+     */
+    private String mStrNumber;
+    public void setStrNumber(String strNumber){
+        this.mStrNumber = strNumber;
+        SPUtils.putValue(ConfigConstant.STR_STUNUMBER, strNumber);
+    }
+    public String getStrNumber(){
+        if (mStrNumber == null){
+            mStrNumber = (String) SPUtils.getValue(ConfigConstant.STR_STUNUMBER, "");
+        }
+        return mStrNumber;
+    }
+
 
 
     // 静态内部类的单例模式

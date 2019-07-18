@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyApp</string>
+    <string name="app_name">校园应用</string>
 
     <!--tab-->
     <string name="tab_bottom_discover">发现</string>

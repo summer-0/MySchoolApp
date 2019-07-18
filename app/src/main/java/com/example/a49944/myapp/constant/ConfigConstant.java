@@ -9,6 +9,7 @@ public class ConfigConstant {
     public static final String USER_ISSELECT = "isSelect";
     public static final String USER_STUNUMBER= "stuNumber";
     public static final String USER_STUPASSWORD= "stuPassword";
+    public static final String STR_STUNUMBER = "str_stunumber";
 
     // 进出规则crc校验码
     public static final String HOME_LOGIN = "home_login";
@@ -28,4 +29,6 @@ public class ConfigConstant {
     public static final String PHOTO_PATH = "photo_path";
     public static final String SCHEDULE_LAST_TERM = "schedule_last_term"; //最后一次查询的课表学期
     public static final String SCHEDULE_LAST_WEEK = "schedule_last_week"; //最后一次查询的课表学期
+    public static final String EXAM_LAST_TERM = "exam_last_term"; //最后一次查询的考试安排学期
+
 }

@@ -11,21 +11,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.NumberPicker;
 import com.example.a49944.myapp.R;
-import com.example.a49944.myapp.net.grade.InquireGradeYearEvent;
+import com.example.a49944.myapp.sdk.ConfigManager;
 
 import java.lang.reflect.Field;
 
 /**
  * Created by 49944
- * Time: 2019/5/9 17:15
+ * Time: 2019/5/11 11:52
  * Des:
  */
-public class MDialogFragment extends AppCompatDialogFragment {
+public class MExamTermFragment extends AppCompatDialogFragment {
+    private OnClickQueryExamListenser listenser;
+    private static final String TAG = MExamTermFragment.class.getSimpleName();
     private View mView;
-
-    private OnClickQueryGradeListenser listenser;
-
     private NumberPicker mNumberPicker;
+    private ConfigManager mConfigManager;
     private final String[] date = {
             "2021-2022-1", "2021-2022-2",
             "2020-2021-1", "2020-2021-2",
@@ -43,6 +43,7 @@ public class MDialogFragment extends AppCompatDialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        mConfigManager = ConfigManager.getInstance();
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         mView = layoutInflater.inflate(R.layout.activity_select_item_inquire_grade_layout, null);
@@ -54,20 +55,19 @@ public class MDialogFragment extends AppCompatDialogFragment {
                     public void onClick(DialogInterface dialog, int which) {
                         // TODO: 2019/5/9
                         int value = mNumberPicker.getValue();
-                        InquireGradeYearEvent.setDate(date[value]);
+                        mConfigManager.setExamTerm(date[value]);
                         listenser.onClick();
                     }
                 })
                 .setNegativeButton(R.string.btn_negative, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        MDialogFragment.this.getDialog().cancel();
-                        //InquireGradeYearEvent.setIsClickQuire(false);
+                        MExamTermFragment.this.getDialog().cancel();
+
                     }
                 });
         return builder.create();
     }
-
     /**
      * 初始化数字选择器
      */
@@ -77,14 +77,6 @@ public class MDialogFragment extends AppCompatDialogFragment {
         mNumberPicker.setMinValue(0);
         mNumberPicker.setMaxValue(date.length - 1);
         setPickerDividerColor();
-    }
-
-    public void setOnClickQueryGradeListenser(OnClickQueryGradeListenser listenser){
-        this.listenser = listenser;
-    }
-
-    public interface OnClickQueryGradeListenser{
-        void onClick();
     }
     /**
      * 通过反射改变分割线颜色,
@@ -105,5 +97,12 @@ public class MDialogFragment extends AppCompatDialogFragment {
                 }
             }
         }
+    }
+    public void setOnClickQueryExamListenser(OnClickQueryExamListenser listenser){
+        this.listenser = listenser;
+    }
+
+    public interface OnClickQueryExamListenser{
+        void onClick();
     }
 }

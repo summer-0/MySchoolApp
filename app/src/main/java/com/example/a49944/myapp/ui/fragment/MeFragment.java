@@ -139,7 +139,7 @@ public class MeFragment extends Fragment implements SwipeRefreshLayout.OnRefresh
 //        mMediaAdapter = new MediaAdapter(mContext);
         mConfigManager = ConfigManager.getInstance();
         String photoPath = mConfigManager.getPhotoPath();
-        if (photoPath != null && !TextUtils.isEmpty(photoPath)){
+        if (photoPath != null && !TextUtils.isEmpty(photoPath)) {
             RequestOptions options = new RequestOptions()
                     .centerCrop()
                     .placeholder(R.color.color_f6)
@@ -149,11 +149,7 @@ public class MeFragment extends Fragment implements SwipeRefreshLayout.OnRefresh
                     .apply(options)
                     .into(mCircleImg);
         }
-        if (UserManagement.isIsLogin()) {
-            mBtnLogin.setText("150806 刘新华");
-        } else {
-            mBtnLogin.setText("立即登录");
-        }
+
         mSwipeRefresh.setOnRefreshListener(this);
         mBtnLogin.setOnClickListener(this);
         mCircleImg.setOnClickListener(this);
@@ -174,6 +170,19 @@ public class MeFragment extends Fragment implements SwipeRefreshLayout.OnRefresh
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (UserManagement.isIsLogin()) {
+            String strNumber = mConfigManager.getStrNumber();
+            if (strNumber != null && !TextUtils.isEmpty(strNumber)) {
+                mBtnLogin.setText(strNumber);
+            }
+        } else {
+            mBtnLogin.setText("立即登录");
+        }
+    }
+
     //下拉刷新
     @Override
     public void onRefresh() {
@@ -189,7 +198,7 @@ public class MeFragment extends Fragment implements SwipeRefreshLayout.OnRefresh
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_login:
-                if (!UserManagement.isIsLogin()){ //如果未登录，则跳转登录页面
+                if (!UserManagement.isIsLogin()) { //如果未登录，则跳转登录页面
                     Intent intent = new Intent(getActivity(), LoginActivity.class);
                     startActivityForResult(intent, LOGIN_REQUEST);
                 }
@@ -365,7 +374,7 @@ public class MeFragment extends Fragment implements SwipeRefreshLayout.OnRefresh
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE ) {
+        if (requestCode == REQUEST_CODE) {
             //返回的数据
             List<MediaEntity> result = Phoenix.result(data);
             MediaEntity mediaEntity = result.get(0);
@@ -381,98 +390,17 @@ public class MeFragment extends Fragment implements SwipeRefreshLayout.OnRefresh
                     .into(mCircleImg);
             // mMediaAdapter.setData(result);
         }
-        if (requestCode == LOGIN_REQUEST){
+        if (requestCode == LOGIN_REQUEST) {
             if (UserManagement.isIsLogin()) {
-                mBtnLogin.setText("150806 刘新华");
+                String strNumber = mConfigManager.getStrNumber();
+                if (strNumber != null && !TextUtils.isEmpty(strNumber)) {
+                    mBtnLogin.setText(strNumber);
+                }
             } else {
                 mBtnLogin.setText("立即登录");
             }
         }
-        /*switch (requestCode) {
-            case CAMERA_REQUEST_CODE:   //调用相机后返回
-                if (resultCode == RESULT_OK) {
-                    //用相机返回的照片去用剪裁也需要对uri进行处理
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        Uri contentUri = FileProvider.getUriForFile(mContext, mContext.getPackageName() + ".provider", mTempFile);
-                        //开始对图片进行裁剪
-                        startPhotoZoom(contentUri);
-                    } else {
-                        //开始对图片进行裁剪
-                        startPhotoZoom(Uri.fromFile(mTempFile));
-                    }
-                }
-                break;
-            case ALBUM_REQUEST_CODE:    //调用相册后的返回
-                if (resultCode == RESULT_OK) {
-                    Uri uri = data.getData();
-                    //开始对图片进行裁剪
-                    startPhotoZoom(uri);
-                }
-                break;
-            case CROP_SMALL_PICTURE:    //调用裁剪后返回
-                if (data != null) {
-                    //让刚才裁剪的图片显示到界面上
-                    Bitmap photo = BitmapFactory.decodeFile(mFile);
-                    mCircleImg.setImageBitmap(photo);
-                } else {
-                    LogUtils.i(TAG, "onActivityResult : data为空");
-                }
-                break;
-        }*/
-    }
 
-    /**
-     * 对图片进行裁剪
-     *
-     * @param uri
-     */
-    private void startPhotoZoom(Uri uri) {
-        if (uri == null) {
-            LogUtils.i(TAG, "startPhotoZoom : uri为空");
-        }
-        Intent intent = new Intent("com.android.camera.action.CROP");
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-        intent.setDataAndType(uri, "image/*");
-        //设置裁剪
-        intent.putExtra("crop", "true");
-        //aspectX aspectY 是宽高的比例
-        intent.putExtra("aspectX", 1);
-        intent.putExtra("aspectY", 1);
-        //outputX outputY 是裁剪图片的宽高
-        intent.putExtra("outputX", 100);
-        intent.putExtra("outputY", 100);
-        intent.putExtra("return-data", false);
-        File file = new File(getPath());
-        try {
-            if (file.exists()) {
-                file.delete();
-            }
-            file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-//        if (!file.getParentFile().exists()) {
-//            file.getParentFile().mkdirs();
-//        }
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
-        startActivityForResult(intent, CROP_SMALL_PICTURE);
-
-    }
-
-    /**
-     * 裁剪后的地址
-     *
-     * @return
-     */
-    private String getPath() {
-        if (mFile == null) {
-            mFile = mContext.getExternalCacheDir() + "/photo.png";
-//            long ms = System.currentTimeMillis() / 1000;
-//            mFile =  Environment.getExternalStorageDirectory() + "/" +"wode/"+ "outtemp.png";
-        }
-        LogUtils.i(TAG, "getPath = " + mFile);
-        return mFile;
     }
 
 

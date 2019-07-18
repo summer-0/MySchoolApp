@@ -3,20 +3,10 @@ package com.example.a49944.myapp.ui.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatEditText;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
 import com.example.a49944.myapp.R;
-import com.example.a49944.myapp.adapter.CampusCallRecyclerAdapter;
-
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by summer_h on 2019/4/29 21:35

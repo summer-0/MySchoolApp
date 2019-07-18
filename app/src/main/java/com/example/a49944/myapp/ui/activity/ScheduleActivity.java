@@ -25,6 +25,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -46,6 +47,8 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
     private TextView wednesdayOne, wednesdayTwo, wednesdayThree, wednesdayFour, wednesdayFive, wednesdaySix;
     private TextView thursdayOne, thursdayTwo, thursdayThree, thursdayFour, thursdayFive, thursdaySix;
     private TextView fridayOne, fridayTwo, fridayThree, fridayFour, fridayFive, fridaySix;
+    private int textSize = 14;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -225,6 +228,8 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
      */
     private void inquireSchedule(String yearMonth, String week, String scheduleTerm) {
         Call<ScheduleBean> scheduleBeanCall = NetClient.getApiService().inquireSchedule(yearMonth, week);
+        URL url = scheduleBeanCall.request().url().url();
+        LogUtils.i(TAG, "url = " + url.toString());
         scheduleBeanCall.enqueue(new Callback<ScheduleBean>() {
             @Override
             public void onResponse(Call<ScheduleBean> call, Response<ScheduleBean> response) {
@@ -265,40 +270,68 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
                         switch (mSingleClass.get(i).getJcdm()) {
                             case "0102":
                                 mondayOne.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                LogUtils.i(TAG, "星期一字体大小: "+mondayOne.getTextSize());
+                                if (mondayOne.getText().length() > 20){
+                                    mondayOne.setTextSize(12);
+                                }
                                 mondayOne.setBackgroundColor(getResources().getColor(R.color.c_light));
                                 break;
                             case "0304":
                                 mondayTwo.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (mondayTwo.getText().length() > 20){
+                                    mondayTwo.setTextSize(12);
+                                }
                                 mondayTwo.setBackgroundColor(getResources().getColor(R.color.c_grap));
                                 break;
                             case "01020304":
                                 mondayOne.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (mondayOne.getText().length() > 20){
+                                    mondayOne.setTextSize(12);
+                                }
                                 mondayOne.setBackgroundColor(getResources().getColor(R.color.c_pink));
                                 mondayTwo.setBackgroundColor(getResources().getColor(R.color.c_pink));
                                 break;
                             case "0506":
                                 mondayThree.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (mondayThree.getText().length() > 20){
+                                    mondayThree.setTextSize(12);
+                                }
                                 mondayThree.setBackgroundColor(getResources().getColor(R.color.C_origin));
                                 break;
                             case "0708":
                                 mondayFour.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (mondayFour.getText().length() > 20){
+                                    mondayFour.setTextSize(12);
+                                }
                                 mondayFour.setBackgroundColor(getResources().getColor(R.color.c_red));
                                 break;
                             case "05060708":
                                 mondayThree.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (mondayThree.getText().length() > 20){
+                                    mondayThree.setTextSize(12);
+                                }
                                 mondayThree.setBackgroundColor(getResources().getColor(R.color.c_pink));
                                 mondayFour.setBackgroundColor(getResources().getColor(R.color.c_pink));
                                 break;
                             case "0910":
                                 mondayFive.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (mondayFive.getText().length() > 20){
+                                    mondayFive.setTextSize(12);
+                                }
                                 mondayFive.setBackgroundColor(getResources().getColor(R.color.inbox_primary));
                                 break;
                             case "1112":
                                 mondaySix.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (mondaySix.getText().length() > 20){
+                                    mondaySix.setTextSize(12);
+                                }
                                 mondaySix.setBackgroundColor(getResources().getColor(R.color.inbox_purple));
                                 break;
                             case "09101112":
                                 mondayFive.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (mondayFive.getText().length() > 20){
+                                    mondayFive.setTextSize(12);
+                                }
                                 mondayFive.setBackgroundColor(getResources().getColor(R.color.c_pink));
                                 mondaySix.setBackgroundColor(getResources().getColor(R.color.c_pink));
                                 break;
@@ -310,40 +343,67 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
                         switch (mSingleClass.get(i).getJcdm()) {
                             case "0102":
                                 tuesdayOne.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (tuesdayOne.getText().length() > 20){
+                                    tuesdayOne.setTextSize(12);
+                                }
                                 tuesdayOne.setBackgroundColor(getResources().getColor(R.color.C_origin));
                                 break;
                             case "0304":
                                 tuesdayTwo.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (tuesdayTwo.getText().length() > 20){
+                                    tuesdayTwo.setTextSize(12);
+                                }
                                 tuesdayTwo.setBackgroundColor(getResources().getColor(R.color.orange));
                                 break;
                             case "01020304":
                                 tuesdayOne.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (tuesdayOne.getText().length() > 20){
+                                    tuesdayOne.setTextSize(12);
+                                }
                                 tuesdayOne.setBackgroundColor(getResources().getColor(R.color.inbox_primary));
                                 tuesdayTwo.setBackgroundColor(getResources().getColor(R.color.inbox_primary));
                                 break;
                             case "0506":
                                 tuesdayThree.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (tuesdayThree.getText().length() > 20){
+                                    tuesdayThree.setTextSize(12);
+                                }
                                 tuesdayThree.setBackgroundColor(getResources().getColor(R.color.c_light));
                                 break;
                             case "0708":
                                 tuesdayFour.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (tuesdayFour.getText().length() > 20){
+                                    tuesdayFour.setTextSize(12);
+                                }
                                 tuesdayFour.setBackgroundColor(getResources().getColor(R.color.c_red));
                                 break;
                             case "05060708":
                                 tuesdayThree.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (tuesdayThree.getText().length() > 20){
+                                    tuesdayThree.setTextSize(12);
+                                }
                                 tuesdayThree.setBackgroundColor(getResources().getColor(R.color.inbox_primary));
                                 tuesdayFour.setBackgroundColor(getResources().getColor(R.color.inbox_primary));
                                 break;
                             case "0910":
                                 tuesdayFive.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (tuesdayFive.getText().length() > 20){
+                                    tuesdayFive.setTextSize(12);
+                                }
                                 tuesdayFive.setBackgroundColor(getResources().getColor(R.color.c_pink));
                                 break;
                             case "1112":
                                 tuesdaySix.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (tuesdaySix.getText().length() > 20){
+                                    tuesdaySix.setTextSize(12);
+                                }
                                 tuesdaySix.setBackgroundColor(getResources().getColor(R.color.inbox_purple));
                                 break;
                             case "09101112":
                                 tuesdayFive.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (tuesdayFive.getText().length() > 20){
+                                    tuesdayFive.setTextSize(12);
+                                }
                                 tuesdayFive.setBackgroundColor(getResources().getColor(R.color.inbox_primary));
                                 tuesdaySix.setBackgroundColor(getResources().getColor(R.color.inbox_primary));
                                 break;
@@ -355,40 +415,67 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
                         switch (mSingleClass.get(i).getJcdm()) {
                             case "0102":
                                 wednesdayOne.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (wednesdayOne.getText().length() > 20){
+                                    wednesdayOne.setTextSize(12);
+                                }
                                 wednesdayOne.setBackgroundColor(getResources().getColor(R.color.progress_end_color));
                                 break;
                             case "0304":
                                 wednesdayTwo.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (wednesdayTwo.getText().length() > 20){
+                                    wednesdayTwo.setTextSize(12);
+                                }
                                 wednesdayTwo.setBackgroundColor(getResources().getColor(R.color._939da4));
                                 break;
                             case "01020304":
                                 wednesdayOne.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (wednesdayOne.getText().length() > 20){
+                                    wednesdayOne.setTextSize(12);
+                                }
                                 wednesdayOne.setBackgroundColor(getResources().getColor(R.color.c_light));
                                 wednesdayTwo.setBackgroundColor(getResources().getColor(R.color.c_light));
                                 break;
                             case "0506":
                                 wednesdayThree.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (wednesdayThree.getText().length() > 20){
+                                    wednesdayThree.setTextSize(12);
+                                }
                                 wednesdayThree.setBackgroundColor(getResources().getColor(R.color.inbox_primary));
                                 break;
                             case "0708":
                                 wednesdayFour.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (wednesdayFour.getText().length() > 20){
+                                    wednesdayFour.setTextSize(12);
+                                }
                                 wednesdayFour.setBackgroundColor(getResources().getColor(R.color.loading_web_bg_color));
                                 break;
                             case "05060708":
                                 wednesdayThree.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (wednesdayThree.getText().length() > 20){
+                                    wednesdayThree.setTextSize(12);
+                                }
                                 wednesdayThree.setBackgroundColor(getResources().getColor(R.color.C_origin));
                                 wednesdayFour.setBackgroundColor(getResources().getColor(R.color.C_origin));
                                 break;
                             case "0910":
                                 wednesdayFive.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (wednesdayFive.getText().length() > 20){
+                                    wednesdayFive.setTextSize(12);
+                                }
                                 wednesdayFive.setBackgroundColor(getResources().getColor(R.color.inbox_purple));
                                 break;
                             case "1112":
                                 wednesdaySix.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (wednesdaySix.getText().length() > 20){
+                                    wednesdaySix.setTextSize(12);
+                                }
                                 wednesdaySix.setBackgroundColor(getResources().getColor(R.color.colorAccent));
                                 break;
                             case "09101112":
                                 wednesdayFive.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (wednesdayFive.getText().length() > 20){
+                                    wednesdayFive.setTextSize(12);
+                                }
                                 wednesdayFive.setBackgroundColor(getResources().getColor(R.color.c_grap));
                                 wednesdaySix.setBackgroundColor(getResources().getColor(R.color.c_grap));
                                 break;
@@ -400,40 +487,67 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
                         switch (mSingleClass.get(i).getJcdm()) {
                             case "0102":
                                 thursdayOne.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (thursdayOne.getText().length() > 20){
+                                    thursdayOne.setTextSize(12);
+                                }
                                 thursdayOne.setBackgroundColor(getResources().getColor(R.color.inbox_primary));
                                 break;
                             case "0304":
                                 thursdayTwo.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (thursdayTwo.getText().length() > 20){
+                                    thursdayTwo.setTextSize(12);
+                                }
                                 thursdayTwo.setBackgroundColor(getResources().getColor(R.color.c_red));
                                 break;
                             case "01020304":
                                 thursdayOne.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (thursdayOne.getText().length() > 20){
+                                    thursdayOne.setTextSize(12);
+                                }
                                 thursdayOne.setBackgroundColor(getResources().getColor(R.color.C_origin));
                                 thursdayTwo.setBackgroundColor(getResources().getColor(R.color.C_origin));
                                 break;
                             case "0506":
                                 thursdayThree.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (thursdayThree.getText().length() > 20){
+                                    thursdayThree.setTextSize(12);
+                                }
                                 thursdayThree.setBackgroundColor(getResources().getColor(R.color.c_grap));
                                 break;
                             case "0708":
                                 thursdayFour.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (thursdayFour.getText().length() > 20){
+                                    thursdayFour.setTextSize(12);
+                                }
                                 thursdayFour.setBackgroundColor(getResources().getColor(R.color.c_light));
                                 break;
                             case "05060708":
                                 thursdayThree.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (thursdayThree.getText().length() > 20){
+                                    thursdayThree.setTextSize(12);
+                                }
                                 thursdayThree.setBackgroundColor(getResources().getColor(R.color.c_pink));
                                 thursdayFour.setBackgroundColor(getResources().getColor(R.color.c_pink));
                                 break;
                             case "0910":
                                 thursdayFive.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (thursdayFive.getText().length() > 20){
+                                    thursdayFive.setTextSize(12);
+                                }
                                 thursdayFive.setBackgroundColor(getResources().getColor(R.color.progress_start_color));
                                 break;
                             case "1112":
                                 thursdaySix.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (thursdaySix.getText().length() > 20){
+                                    thursdaySix.setTextSize(12);
+                                }
                                 thursdaySix.setBackgroundColor(getResources().getColor(R.color.orange));
                                 break;
                             case "09101112":
                                 thursdayFive.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (thursdayFive.getText().length() > 20){
+                                    thursdayFive.setTextSize(12);
+                                }
                                 thursdayFive.setBackgroundColor(getResources().getColor(R.color.inbox_purple));
                                 thursdaySix.setBackgroundColor(getResources().getColor(R.color.inbox_purple));
                                 break;
@@ -445,40 +559,67 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
                         switch (mSingleClass.get(i).getJcdm()) {
                             case "0102":
                                 fridayOne.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (fridayOne.getText().length() > 20){
+                                    fridayOne.setTextSize(12);
+                                }
                                 fridayOne.setBackgroundColor(getResources().getColor(R.color.C_origin));
                                 break;
                             case "0304":
                                 fridayTwo.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (fridayTwo.getText().length() > 20){
+                                    fridayTwo.setTextSize(12);
+                                }
                                 fridayTwo.setBackgroundColor(getResources().getColor(R.color.inbox_primary));
                                 break;
                             case "01020304":
                                 fridayOne.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (fridayOne.getText().length() > 20){
+                                    fridayOne.setTextSize(12);
+                                }
                                 fridayOne.setBackgroundColor(getResources().getColor(R.color.tabSelectorTextColorChecked));
                                 fridayTwo.setBackgroundColor(getResources().getColor(R.color.tabSelectorTextColorChecked));
                                 break;
                             case "0506":
                                 fridayThree.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (fridayThree.getText().length() > 20){
+                                    fridayThree.setTextSize(12);
+                                }
                                 fridayThree.setBackgroundColor(getResources().getColor(R.color.inbox_purple));
                                 break;
                             case "0708":
                                 fridayFour.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (fridayFour.getText().length() > 20){
+                                    fridayFour.setTextSize(12);
+                                }
                                 fridayFour.setBackgroundColor(getResources().getColor(R.color.inbox_primary));
                                 break;
                             case "05060708":
                                 fridayThree.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (fridayThree.getText().length() > 20){
+                                    fridayThree.setTextSize(12);
+                                }
                                 fridayThree.setBackgroundColor(getResources().getColor(R.color.c_pink));
                                 fridayFour.setBackgroundColor(getResources().getColor(R.color.c_pink));
                                 break;
                             case "0910":
                                 fridayFive.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (fridayFive.getText().length() > 20){
+                                    fridayFive.setTextSize(12);
+                                }
                                 fridayFive.setBackgroundColor(getResources().getColor(R.color.C_origin));
                                 break;
                             case "1112":
                                 fridaySix.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (fridaySix.getText().length() > 20){
+                                    fridaySix.setTextSize(12);
+                                }
                                 fridaySix.setBackgroundColor(getResources().getColor(R.color.c_light));
                                 break;
                             case "09101112":
                                 fridayFive.setText(mSingleClass.get(i).getKcmc() + " " + mSingleClass.get(i).getJxcdmc());
+                                if (fridayFive.getText().length() > 20){
+                                    fridayFive.setTextSize(12);
+                                }
                                 fridayFive.setBackgroundColor(getResources().getColor(R.color.custom_gray));
                                 fridaySix.setBackgroundColor(getResources().getColor(R.color.custom_gray));
                                 break;
@@ -492,6 +633,8 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
             }
 
         }
+
+
     }
 
     /**
@@ -499,35 +642,65 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
      */
     private void clearTVBackGrandAndText() {
         mondayOne.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        mondayOne.setTextSize(textSize);
         mondayTwo.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        mondayTwo.setTextSize(textSize);
         mondayThree.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        mondayThree.setTextSize(textSize);
         mondayFour.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        mondayFour.setTextSize(textSize);
         mondayFive.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        mondayFive.setTextSize(textSize);
         mondaySix.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        mondaySix.setTextSize(textSize);
         tuesdayOne.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        tuesdayOne.setTextSize(textSize);
         tuesdayTwo.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        tuesdayTwo.setTextSize(textSize);
         tuesdayThree.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        tuesdayThree.setTextSize(textSize);
         tuesdayFour.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        tuesdayFour.setTextSize(textSize);
         tuesdayFive.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        tuesdayFive.setTextSize(textSize);
         tuesdaySix.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        tuesdaySix.setTextSize(textSize);
         wednesdayOne.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        wednesdayOne.setTextSize(textSize);
         wednesdayTwo.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        wednesdayTwo.setTextSize(textSize);
         wednesdayThree.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        wednesdayThree.setTextSize(textSize);
         wednesdayFour.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        wednesdayFour.setTextSize(textSize);
         wednesdayFive.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        wednesdayFive.setTextSize(textSize);
         wednesdaySix.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        wednesdaySix.setTextSize(textSize);
         thursdayOne.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        thursdayOne.setTextSize(textSize);
         thursdayTwo.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        thursdayTwo.setTextSize(textSize);
         thursdayThree.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        thursdayThree.setTextSize(textSize);
         thursdayFour.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        thursdayFour.setTextSize(textSize);
         thursdayFive.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        thursdayFive.setTextSize(textSize);
         thursdaySix.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        thursdaySix.setTextSize(textSize);
         fridayOne.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        fridayOne.setTextSize(textSize);
         fridayTwo.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        fridayTwo.setTextSize(textSize);
         fridayThree.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        fridayThree.setTextSize(textSize);
         fridayFour.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        fridayFour.setTextSize(textSize);
         fridayFive.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        fridayFive.setTextSize(textSize);
         fridaySix.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        fridaySix.setTextSize(textSize);
         mondayOne.setText("");
         mondayTwo.setText("");
         mondayThree.setText("");
